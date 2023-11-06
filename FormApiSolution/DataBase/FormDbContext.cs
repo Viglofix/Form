@@ -78,9 +78,9 @@ public class FormDbContext : DbContext
 
         // RelationShips
         modelBuilder.Entity<ClickUpRequiredDataModel>()
-            .HasOne(x => x.Specialization)
-            .WithOne(x => x.clickUpRequiredDataModel)
-            .HasForeignKey<ClickUpRequiredDataModel>(x => x.Specialization_Id);
+            .HasOne<SpecializationModel>(x => x.Specialization)
+            .WithMany(x => x.clickUpRequiredDataModel)
+            .HasForeignKey(x => x.Specialization_Id);
 
         base.OnModelCreating(modelBuilder);
     }
