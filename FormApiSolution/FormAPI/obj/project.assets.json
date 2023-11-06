@@ -507,6 +507,19 @@
         "runtime": {
           "bin/placeholder/DataBase.dll": {}
         }
+      },
+      "Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "DataBase": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Services.dll": {}
+        }
       }
     }
   },
@@ -1455,6 +1468,11 @@
       "type": "project",
       "path": "../DataBase/DataBase.csproj",
       "msbuildProject": "../DataBase/DataBase.csproj"
+    },
+    "Services/1.0.0": {
+      "type": "project",
+      "path": "../Services/Services.csproj",
+      "msbuildProject": "../Services/Services.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -1463,6 +1481,7 @@
       "Microsoft.AspNetCore.OpenApi >= 7.0.13",
       "Microsoft.EntityFrameworkCore >= 7.0.13",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.13",
+      "Services >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.5.0"
     ]
   },
@@ -1495,6 +1514,9 @@
           "projectReferences": {
             "B:\\PraktykiAPI\\Form\\FormApiSolution\\DataBase\\DataBase.csproj": {
               "projectPath": "B:\\PraktykiAPI\\Form\\FormApiSolution\\DataBase\\DataBase.csproj"
+            },
+            "B:\\PraktykiAPI\\Form\\FormApiSolution\\Services\\Services.csproj": {
+              "projectPath": "B:\\PraktykiAPI\\Form\\FormApiSolution\\Services\\Services.csproj"
             }
           }
         }

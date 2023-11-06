@@ -7,8 +7,9 @@ public class ClickUpRequiredDataModel
     public required string Email { get; set; }
     public required string PhoneNumeber { get; set; }
     public required DateTime DateOfBirth { get; set; }
-    public required string Specialization { get; set; }
-    public virtual StatusOfRecruiterModel? Status { get; set; }
+    public long? Specialization_Id { get; set; }
+    public virtual required SpecializationModel Specialization { get; set; }
+ /*   public virtual StatusOfRecruiterModel? Status { get; set; }
     public string? GithubAccount { get; set; }
     // Knowledge Section
     public string? ProgrammingKnowledge { get; set; }
@@ -19,6 +20,6 @@ public class ClickUpRequiredDataModel
     public required virtual EnglishLevelModel EnglishLevel { get; set; }
     public required string Expectations { get; set; }
     public string? AdditionalInformation { get; set; }
-    public DropFilesModel? DropFilesModel { get; set; }
+    public DropFilesModel? DropFilesModel { get; set; } */
 
 }

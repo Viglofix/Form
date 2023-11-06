@@ -1,10 +1,12 @@
 using DataBase;
+using Services.Service;
+using Services.Container;
 using Microsoft.EntityFrameworkCore;
 
-namespace FormAPI
-{
+namespace FormAPI;
     public class Program
     {
+        // Do zrobienia -- ToString do Modeli z uzyciem slowa kluczowego Partial.
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
@@ -16,10 +18,24 @@ namespace FormAPI
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            // CORS Policy Section
+            builder.Services.AddCors(optPolicy =>
+            {
+                optPolicy.AddPolicy("UniversalPolicy", optConfig =>
+                {
+                    optConfig.WithOrigins("*");
+                    optConfig.AllowAnyMethod();
+                    optConfig.AllowAnyHeader();
+                });
+            });
+
             // DbContext -- Section
             builder.Services.AddDbContext<FormDbContext>(opt => opt.UseNpgsql(builder.Configuration.GetConnectionString("FormDb")));
+            // Services -- Section
+            builder.Services.AddTransient<IClickUpService,ClickUpService>();
 
             var app = builder.Build();
+            app.UseCors("UniversalPolicy");
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -38,4 +54,3 @@ namespace FormAPI
             app.Run();
         }
     }
-}

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormAPI", "FormAPI\FormAPI.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBase", "DataBase\DataBase.csproj", "{1F517BCC-DA6B-4F0C-AC4C-3238121EAB59}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{07231729-2E1A-4AB2-9CFB-C502594B3939}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{1F517BCC-DA6B-4F0C-AC4C-3238121EAB59}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F517BCC-DA6B-4F0C-AC4C-3238121EAB59}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F517BCC-DA6B-4F0C-AC4C-3238121EAB59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07231729-2E1A-4AB2-9CFB-C502594B3939}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07231729-2E1A-4AB2-9CFB-C502594B3939}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07231729-2E1A-4AB2-9CFB-C502594B3939}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07231729-2E1A-4AB2-9CFB-C502594B3939}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

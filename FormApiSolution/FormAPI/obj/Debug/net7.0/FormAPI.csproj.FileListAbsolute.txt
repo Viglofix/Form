@@ -43,3 +43,5 @@ B:\PraktykiAPI\Form\FormApiSolution\FormAPI\obj\Debug\net7.0\refint\FormAPI.dll
 B:\PraktykiAPI\Form\FormApiSolution\FormAPI\obj\Debug\net7.0\FormAPI.pdb
 B:\PraktykiAPI\Form\FormApiSolution\FormAPI\obj\Debug\net7.0\FormAPI.genruntimeconfig.cache
 B:\PraktykiAPI\Form\FormApiSolution\FormAPI\obj\Debug\net7.0\ref\FormAPI.dll
+B:\PraktykiAPI\Form\FormApiSolution\FormAPI\bin\Debug\net7.0\Services.dll
+B:\PraktykiAPI\Form\FormApiSolution\FormAPI\bin\Debug\net7.0\Services.pdb
