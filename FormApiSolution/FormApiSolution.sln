@@ -5,6 +5,8 @@ VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormAPI", "FormAPI\FormAPI.csproj", "{065ADC9B-BCE6-431D-A00A-CDF7EA47B87F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBase", "DataBase\DataBase.csproj", "{1F517BCC-DA6B-4F0C-AC4C-3238121EAB59}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{065ADC9B-BCE6-431D-A00A-CDF7EA47B87F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{065ADC9B-BCE6-431D-A00A-CDF7EA47B87F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{065ADC9B-BCE6-431D-A00A-CDF7EA47B87F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F517BCC-DA6B-4F0C-AC4C-3238121EAB59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F517BCC-DA6B-4F0C-AC4C-3238121EAB59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F517BCC-DA6B-4F0C-AC4C-3238121EAB59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F517BCC-DA6B-4F0C-AC4C-3238121EAB59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

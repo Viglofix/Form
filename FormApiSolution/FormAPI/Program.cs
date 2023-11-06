@@ -1,3 +1,5 @@
+using DataBase;
+using Microsoft.EntityFrameworkCore;
 
 namespace FormAPI
 {
@@ -13,6 +15,9 @@ namespace FormAPI
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            // DbContext -- Section
+            builder.Services.AddDbContext<FormDbContext>(opt => opt.UseNpgsql(builder.Configuration.GetConnectionString("FormDb")));
 
             var app = builder.Build();
 
