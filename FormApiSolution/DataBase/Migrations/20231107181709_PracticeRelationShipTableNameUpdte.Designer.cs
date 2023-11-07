@@ -3,6 +3,7 @@ using System;
 using DataBase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DataBase.Migrations
 {
     [DbContext(typeof(FormDbContext))]
-    partial class FormDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231107181709_PracticeRelationShipTableNameUpdte")]
+    partial class PracticeRelationShipTableNameUpdte
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,18 +44,6 @@ namespace DataBase.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnName("email");
 
-                    b.Property<long?>("EnglishLevel_Id")
-                        .HasColumnType("BIGINT")
-                        .HasColumnName("english_level_id");
-
-                    b.Property<string>("Experience")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("experience");
-
-                    b.Property<string>("FinishedProject")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("finished_project");
-
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasMaxLength(64)
@@ -63,23 +54,10 @@ namespace DataBase.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnName("github_account");
 
-                    b.Property<string>("GraphicInspitation")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("graphic_inspiration");
-
-                    b.Property<string>("GraphicProgram")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("graphic_program");
-
                     b.Property<string>("PhoneNumeber")
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasColumnName("phone_number");
-
-                    b.Property<string>("ProgrammingKnowledge")
-                        .HasMaxLength(256)
-                        .HasColumnType("VARCHAR")
-                        .HasColumnName("programmin_knowledge");
 
                     b.Property<long?>("Specialization_Id")
                         .HasColumnType("BIGINT")
@@ -91,36 +69,11 @@ namespace DataBase.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EnglishLevel_Id");
-
                     b.HasIndex("Specialization_Id");
 
                     b.HasIndex("Status_Id");
 
                     b.ToTable("clickup_required_data");
-                });
-
-            modelBuilder.Entity("DataBase.Model.EnglishLevelModel", b =>
-                {
-                    b.Property<long>("Id_EnglishLevel")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("BIGINT")
-                        .HasColumnName("id_english_level");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id_EnglishLevel"));
-                    NpgsqlPropertyBuilderExtensions.HasIdentityOptions(b.Property<long>("Id_EnglishLevel"), 1L, null, null, null, null, null);
-
-                    b.Property<string>("EnglishLevelProperty")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(2)
-                        .HasColumnType("VARCHAR")
-                        .HasDefaultValue("B1")
-                        .HasColumnName("english_level_property");
-
-                    b.HasKey("Id_EnglishLevel");
-
-                    b.ToTable("english_level");
                 });
 
             modelBuilder.Entity("DataBase.Model.SpecializationModel", b =>
@@ -204,10 +157,6 @@ namespace DataBase.Migrations
 
             modelBuilder.Entity("DataBase.Model.ClickUpRequiredDataModel", b =>
                 {
-                    b.HasOne("DataBase.Model.EnglishLevelModel", "EnglishLevel")
-                        .WithMany("ClickUpRequiredDataModels")
-                        .HasForeignKey("EnglishLevel_Id");
-
                     b.HasOne("DataBase.Model.SpecializationModel", "Specialization")
                         .WithMany("clickUpRequiredDataModel")
                         .HasForeignKey("Specialization_Id");
@@ -215,8 +164,6 @@ namespace DataBase.Migrations
                     b.HasOne("DataBase.Model.StatusOfRecruiterModel", "Status")
                         .WithMany("clickUpRequiredDataModel")
                         .HasForeignKey("Status_Id");
-
-                    b.Navigation("EnglishLevel");
 
                     b.Navigation("Specialization");
 
@@ -230,11 +177,6 @@ namespace DataBase.Migrations
                         .HasForeignKey("TypeOfPracticeModel_Id");
 
                     b.Navigation("TypeOfPracticeModel");
-                });
-
-            modelBuilder.Entity("DataBase.Model.EnglishLevelModel", b =>
-                {
-                    b.Navigation("ClickUpRequiredDataModels");
                 });
 
             modelBuilder.Entity("DataBase.Model.SpecializationModel", b =>

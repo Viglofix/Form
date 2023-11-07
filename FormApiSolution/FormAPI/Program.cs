@@ -7,6 +7,8 @@ namespace FormAPI;
     public class Program
     {
         // Do zrobienia -- ToString do Modeli z uzyciem slowa kluczowego Partial.
+        // Do zrobienia -- Dynamiczna walidacja uzytkownika, jesli takowy istnieje w bazie danych.
+        // W momencie gdy po froncie uzytkownik dodaje imie i nazwisko
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
