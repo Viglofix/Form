@@ -35,6 +35,7 @@ namespace FormAPI;
             builder.Services.AddDbContext<FormDbContext>(opt => opt.UseNpgsql(builder.Configuration.GetConnectionString("FormDb")));
             // Services -- Section
             builder.Services.AddTransient<IClickUpService,ClickUpService>();
+            builder.Services.AddTransient<IFileManagementService,FileManagementService>();
 
             var app = builder.Build();
             app.UseCors("UniversalPolicy");

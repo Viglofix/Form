@@ -12,10 +12,12 @@ public class ClickUpRequiredDataModel
     public long? Specialization_Id { get; set; }
     public long? Status_Id { get; set; }
     public long? EnglishLevel_Id { get; set; }
+    public long? DropFile_Id { get; set; }
   //  public required long TypeOfPractice_Id { get; set; }
     public virtual SpecializationModel? Specialization { get; set; }
     public virtual StatusOfRecruiterModel? Status { get; set; }
     public virtual EnglishLevelModel? EnglishLevel { get; set; }
+    public virtual DropFilesModel? DropFiles { get; set; }
   //  public virtual TypeOfPracticeModel? TypeOfPractice { get; set; }
     public string? GithubAccount { get; set; } 
     // Knowledge Section

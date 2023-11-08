@@ -15,6 +15,7 @@ public class FormDbContext : DbContext
     public virtual DbSet<StatusOfRecruiterModel> status_of_recruiter { get; set; }
     public virtual DbSet<TypeOfPracticeModel> type_of_practice { get; set; }
     public virtual DbSet<EnglishLevelModel> english_level { get; set; }
+    public virtual DbSet<DropFilesModel> drop_files { get; set; }
     /*    public virtual DbSet<DropFilesModel> DropFiles { get; set; }
        public virtual DbSet<EnglishLevelModel> EnglishLevel { get; set; }
        public virtual DbSet<StatusOfRecruiterModel> StatusOfRecruiter { get; set; } */
@@ -32,6 +33,8 @@ public class FormDbContext : DbContext
             .HasKey(x => x.Id_TypeOfPractice);
         modelBuilder.Entity<EnglishLevelModel>()
             .HasKey(x => x.Id_EnglishLevel);
+        modelBuilder.Entity<DropFilesModel>()
+            .HasKey(x => x.FileID);
 
         // ClickUpRequiredDataModel Properties Configuration
         modelBuilder.Entity<ClickUpRequiredDataModel>()
@@ -212,6 +215,26 @@ public class FormDbContext : DbContext
             .HasMaxLength(2)
             .HasDefaultValue("B1")
             .IsRequired();
+        // DropFiles properties configuration
+        modelBuilder.Entity<DropFilesModel>()
+            .Property(x => x.FileID)
+            .HasColumnType("file_id")
+            .HasColumnType("BIGINT")
+            .UseIdentityAlwaysColumn()
+            .HasIdentityOptions(startValue: 1)
+            .IsRequired();
+        modelBuilder.Entity<DropFilesModel>()
+            .Property(x =>x.FileName)
+            .HasColumnName("file_name")
+            .HasColumnType("VARCHAR")
+            .HasMaxLength(256)
+            .HasDefaultValue(null)
+            .IsRequired();
+        modelBuilder.Entity<DropFilesModel>()
+            .Property(x => x.FileData)
+            .HasColumnName("file_data")
+            .HasColumnType("BYTEA")
+            .IsRequired();
 
         // RelationShips
         // Many-To-One Relationship ClickUpRequiredDataModel >--| SpecializationModel
@@ -236,6 +259,10 @@ public class FormDbContext : DbContext
             .HasOne<EnglishLevelModel>(x => x.EnglishLevel)
             .WithMany(x => x.ClickUpRequiredDataModels)
             .HasForeignKey(x => x.EnglishLevel_Id);
+        modelBuilder.Entity<ClickUpRequiredDataModel>()
+            .HasOne<DropFilesModel>(x => x.DropFiles)
+            .WithMany(x => x.clickUpRequiredDataModels)
+            .HasForeignKey(x => x.DropFile_Id);
 
         base.OnModelCreating(modelBuilder);
     }

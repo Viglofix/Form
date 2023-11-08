@@ -45,3 +45,6 @@ B:\PraktykiAPI\Form\FormApiSolution\FormAPI\obj\Debug\net7.0\FormAPI.genruntimec
 B:\PraktykiAPI\Form\FormApiSolution\FormAPI\obj\Debug\net7.0\ref\FormAPI.dll
 B:\PraktykiAPI\Form\FormApiSolution\FormAPI\bin\Debug\net7.0\Services.dll
 B:\PraktykiAPI\Form\FormApiSolution\FormAPI\bin\Debug\net7.0\Services.pdb
+B:\PraktykiAPI\Form\FormApiSolution\FormAPI\bin\Debug\net7.0\Microsoft.AspNetCore.Server.Kestrel.Https.dll
+B:\PraktykiAPI\Form\FormApiSolution\FormAPI\bin\Debug\net7.0\Microsoft.AspNetCore.Server.Kestrel.Transport.Abstractions.dll
+B:\PraktykiAPI\Form\FormApiSolution\FormAPI\bin\Debug\net7.0\Newtonsoft.Json.dll
