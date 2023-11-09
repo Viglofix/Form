@@ -89,6 +89,12 @@ public class FormDbContext : DbContext
             .HasColumnType("BIGINT")
             .HasDefaultValue(null)
             .IsRequired(false);
+        modelBuilder.Entity<ClickUpRequiredDataModel>()
+            .Property(x => x.DropFile_Id)
+            .HasColumnName("drop_file_id")
+            .HasColumnType("BIGINT")
+            .HasDefaultValue(null)
+            .IsRequired(false);
         // End of Foreign Keys
 
         modelBuilder.Entity<ClickUpRequiredDataModel>()
@@ -128,7 +134,18 @@ public class FormDbContext : DbContext
             .HasColumnType("TEXT")
             .HasDefaultValue(null)
             .IsRequired(false);
-
+     modelBuilder.Entity<ClickUpRequiredDataModel>()
+           .Property(x => x.Expectation)
+           .HasColumnName("expectation")
+           .HasColumnType("TEXT")
+           .HasDefaultValue(null)
+           .IsRequired();
+       modelBuilder.Entity<ClickUpRequiredDataModel>()
+            .Property(x => x.AdditionalInformation)
+            .HasColumnName("additional_information")
+            .HasColumnType("TEXT")
+            .HasDefaultValue(null)
+            .IsRequired(false); 
       /*  modelBuilder.Entity<ClickUpRequiredDataModel>()
             .Property(x=>x.TypeOfPractice_Id)
             .HasColumnName("type_of_practice_id")
@@ -156,7 +173,7 @@ public class FormDbContext : DbContext
             .Property(x => x.Id_StatusOfRecruiter)
             .HasColumnName("id_status_of_recruiter")
             .HasColumnType("BIGINT")
-            .UseIdentityAlwaysColumn()
+            .UseIdentityByDefaultColumn()
             .HasIdentityOptions(startValue: 1)
             .IsRequired();
         modelBuilder.Entity<StatusOfRecruiterModel>()

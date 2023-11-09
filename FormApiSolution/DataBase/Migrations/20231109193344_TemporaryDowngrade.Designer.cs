@@ -3,6 +3,7 @@ using System;
 using DataBase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DataBase.Migrations
 {
     [DbContext(typeof(FormDbContext))]
-    partial class FormDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231109193344_TemporaryDowngrade")]
+    partial class TemporaryDowngrade
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,17 +35,12 @@ namespace DataBase.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityAlwaysColumn(b.Property<long>("Id"));
                     NpgsqlPropertyBuilderExtensions.HasIdentityOptions(b.Property<long>("Id"), 1L, null, null, null, null, null);
 
-                    b.Property<string>("AdditionalInformation")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("additional_information");
-
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("DATE")
                         .HasColumnName("date_of_birth");
 
                     b.Property<long?>("DropFile_Id")
-                        .HasColumnType("BIGINT")
-                        .HasColumnName("drop_file_id");
+                        .HasColumnType("BIGINT");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -52,11 +50,6 @@ namespace DataBase.Migrations
                     b.Property<long?>("EnglishLevel_Id")
                         .HasColumnType("BIGINT")
                         .HasColumnName("english_level_id");
-
-                    b.Property<string>("Expectation")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasColumnName("expectation");
 
                     b.Property<string>("Experience")
                         .HasColumnType("TEXT")
@@ -194,7 +187,7 @@ namespace DataBase.Migrations
                         .HasColumnType("BIGINT")
                         .HasColumnName("id_status_of_recruiter");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id_StatusOfRecruiter"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityAlwaysColumn(b.Property<long>("Id_StatusOfRecruiter"));
                     NpgsqlPropertyBuilderExtensions.HasIdentityOptions(b.Property<long>("Id_StatusOfRecruiter"), 1L, null, null, null, null, null);
 
                     b.Property<DateTime?>("EndDateOfPractice")

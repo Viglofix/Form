@@ -26,8 +26,6 @@ public class ClickUpRequiredDataModel
     public string? GraphicProgram { get; set; }
     public string? Experience { get; set; }
     public string? FinishedProject { get; set; }
- /*   public required string Expectation { get; set; }
-    public string? AdditionalInformation { get; set; } */
-    /* public DropFilesModel? DropFilesModel { get; set; } */
-
+    public required string Expectation { get; set; }
+    public string? AdditionalInformation { get; set; }
 }

@@ -1472,7 +1472,8 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "DataBase": "1.0.0",
-          "Microsoft.AspNetCore": "2.2.0"
+          "Microsoft.AspNetCore": "2.2.0",
+          "Microsoft.AspNetCore.OpenApi": "7.0.13"
         },
         "compile": {
           "bin/placeholder/Services.dll": {}

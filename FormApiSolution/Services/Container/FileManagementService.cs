@@ -24,6 +24,12 @@ public class FileManagementService : IFileManagementService
                 throw new Exception("No files found");
             }
             DropFilesModel? db = null;
+            /*
+             *MemoryStream to klasa, która przechowuje dane w pamięci RAM jako tablicę bajtów (byte[]). 
+             *Jest to przydatne, gdy chcesz operować na danych w pamięci, na przykład,
+             *gdy pracujesz z danymi, które są generowane dynamicznie lub przetwarzane w 
+             *pamięci, a nie pochodzą z plików na dysku. 
+             */
             using (var memoryStream = new MemoryStream())
             {
                 await file.CopyToAsync(memoryStream);
