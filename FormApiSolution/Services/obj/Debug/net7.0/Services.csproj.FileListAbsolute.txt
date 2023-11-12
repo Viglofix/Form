@@ -1,0 +1,15 @@
+B:\PraktykiAPI\Form\FormApiSolution\Services\bin\Debug\net7.0\Services.deps.json
+B:\PraktykiAPI\Form\FormApiSolution\Services\bin\Debug\net7.0\Services.dll
+B:\PraktykiAPI\Form\FormApiSolution\Services\bin\Debug\net7.0\Services.pdb
+B:\PraktykiAPI\Form\FormApiSolution\Services\bin\Debug\net7.0\DataBase.dll
+B:\PraktykiAPI\Form\FormApiSolution\Services\bin\Debug\net7.0\DataBase.pdb
+B:\PraktykiAPI\Form\FormApiSolution\Services\obj\Debug\net7.0\Services.csproj.AssemblyReference.cache
+B:\PraktykiAPI\Form\FormApiSolution\Services\obj\Debug\net7.0\Services.GeneratedMSBuildEditorConfig.editorconfig
+B:\PraktykiAPI\Form\FormApiSolution\Services\obj\Debug\net7.0\Services.AssemblyInfoInputs.cache
+B:\PraktykiAPI\Form\FormApiSolution\Services\obj\Debug\net7.0\Services.AssemblyInfo.cs
+B:\PraktykiAPI\Form\FormApiSolution\Services\obj\Debug\net7.0\Services.csproj.CoreCompileInputs.cache
+B:\PraktykiAPI\Form\FormApiSolution\Services\obj\Debug\net7.0\Services.csproj.CopyComplete
+B:\PraktykiAPI\Form\FormApiSolution\Services\obj\Debug\net7.0\Services.dll
+B:\PraktykiAPI\Form\FormApiSolution\Services\obj\Debug\net7.0\refint\Services.dll
+B:\PraktykiAPI\Form\FormApiSolution\Services\obj\Debug\net7.0\Services.pdb
+B:\PraktykiAPI\Form\FormApiSolution\Services\obj\Debug\net7.0\ref\Services.dll

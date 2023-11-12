@@ -1,0 +1,14 @@
+B:\PraktykiAPI\Form\FormApiSolution\DataBase\bin\Debug\net7.0\DataBase.deps.json
+B:\PraktykiAPI\Form\FormApiSolution\DataBase\bin\Debug\net7.0\DataBase.dll
+B:\PraktykiAPI\Form\FormApiSolution\DataBase\bin\Debug\net7.0\DataBase.pdb
+B:\PraktykiAPI\Form\FormApiSolution\DataBase\obj\Debug\net7.0\DataBase.csproj.AssemblyReference.cache
+B:\PraktykiAPI\Form\FormApiSolution\DataBase\obj\Debug\net7.0\DataBase.GeneratedMSBuildEditorConfig.editorconfig
+B:\PraktykiAPI\Form\FormApiSolution\DataBase\obj\Debug\net7.0\DataBase.AssemblyInfoInputs.cache
+B:\PraktykiAPI\Form\FormApiSolution\DataBase\obj\Debug\net7.0\DataBase.AssemblyInfo.cs
+B:\PraktykiAPI\Form\FormApiSolution\DataBase\obj\Debug\net7.0\DataBase.csproj.CoreCompileInputs.cache
+B:\PraktykiAPI\Form\FormApiSolution\DataBase\obj\Debug\net7.0\DataBase.dll
+B:\PraktykiAPI\Form\FormApiSolution\DataBase\obj\Debug\net7.0\refint\DataBase.dll
+B:\PraktykiAPI\Form\FormApiSolution\DataBase\obj\Debug\net7.0\DataBase.pdb
+B:\PraktykiAPI\Form\FormApiSolution\DataBase\obj\Debug\net7.0\ref\DataBase.dll
+B:\PraktykiAPI\Form\FormApiSolution\DataBase\bin\Debug\net7.0\DataBase.runtimeconfig.json
+B:\PraktykiAPI\Form\FormApiSolution\DataBase\obj\Debug\net7.0\DataBase.genruntimeconfig.cache
