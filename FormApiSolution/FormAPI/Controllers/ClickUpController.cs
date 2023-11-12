@@ -8,10 +8,14 @@ using Services.Service;
 using Npgsql;
 using Microsoft.AspNetCore.Connections;
 using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 
 namespace FormAPI.Controllers
 {
+    [Authorize]
     [Route("[controller]")]
+    //[DisableCors]
     [ApiController]
 
     public class ClickUpController : ControllerBase
@@ -26,6 +30,8 @@ namespace FormAPI.Controllers
             _dbContext = dbContext;
             _configuration = configuration;
         }
+
+        [AllowAnonymous]
         [HttpGet("GetAllSpecializations")]
         public async Task<IActionResult> GetAllSpecializations()
         {
@@ -36,6 +42,7 @@ namespace FormAPI.Controllers
             }
             return Ok(await specObj);
         }
+
         [HttpPost("CreateUser")]
         public async Task<IActionResult> CreateUser(ClickUpRequiredDataModel clickUp)
         {

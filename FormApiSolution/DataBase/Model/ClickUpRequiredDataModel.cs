@@ -13,7 +13,7 @@ public class ClickUpRequiredDataModel
     public long? Status_Id { get; set; }
     public long? EnglishLevel_Id { get; set; }
     public long? DropFile_Id { get; set; }
-  //  public required long TypeOfPractice_Id { get; set; }
+    //  public required long TypeOfPractice_Id { get; set; }
     public virtual SpecializationModel? Specialization { get; set; }
     public virtual StatusOfRecruiterModel? Status { get; set; }
     public virtual EnglishLevelModel? EnglishLevel { get; set; }

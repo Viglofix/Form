@@ -2,6 +2,8 @@ using DataBase;
 using Services.Service;
 using Services.Container;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication;
+using Services.Helper;
 
 namespace FormAPI;
     public class Program
@@ -36,6 +38,8 @@ namespace FormAPI;
             // Services -- Section
             builder.Services.AddTransient<IClickUpService,ClickUpService>();
             builder.Services.AddTransient<IFileManagementService,FileManagementService>();
+            //Authentication
+            builder.Services.AddAuthentication("BasicAuthentication").AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
 
             var app = builder.Build();
             app.UseCors("UniversalPolicy");
@@ -49,6 +53,7 @@ namespace FormAPI;
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication(); 
             app.UseAuthorization();
 
 

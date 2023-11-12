@@ -16,6 +16,7 @@ public class FormDbContext : DbContext
     public virtual DbSet<TypeOfPracticeModel> type_of_practice { get; set; }
     public virtual DbSet<EnglishLevelModel> english_level { get; set; }
     public virtual DbSet<DropFilesModel> drop_files { get; set; }
+    public virtual DbSet<AdminPanel> admin_panel { get; set; }
     /*    public virtual DbSet<DropFilesModel> DropFiles { get; set; }
        public virtual DbSet<EnglishLevelModel> EnglishLevel { get; set; }
        public virtual DbSet<StatusOfRecruiterModel> StatusOfRecruiter { get; set; } */
@@ -35,6 +36,8 @@ public class FormDbContext : DbContext
             .HasKey(x => x.Id_EnglishLevel);
         modelBuilder.Entity<DropFilesModel>()
             .HasKey(x => x.FileID);
+        modelBuilder.Entity<AdminPanel>()
+            .HasKey(x => x.Id_Admin);
 
         // ClickUpRequiredDataModel Properties Configuration
         modelBuilder.Entity<ClickUpRequiredDataModel>()
@@ -237,7 +240,7 @@ public class FormDbContext : DbContext
             .Property(x => x.FileID)
             .HasColumnType("file_id")
             .HasColumnType("BIGINT")
-            .UseIdentityAlwaysColumn()
+            .UseIdentityByDefaultColumn()
             .HasIdentityOptions(startValue: 1)
             .IsRequired();
         modelBuilder.Entity<DropFilesModel>()
@@ -251,6 +254,35 @@ public class FormDbContext : DbContext
             .Property(x => x.FileData)
             .HasColumnName("file_data")
             .HasColumnType("BYTEA")
+            .IsRequired();
+
+        // admin panel
+        modelBuilder.Entity<AdminPanel>()
+            .Property(x => x.Id_Admin)
+            .HasColumnName("id_admin")
+            .HasColumnType("BIGINT")
+            .UseIdentityColumn()
+            .HasIdentityOptions(startValue: 1)
+            .IsRequired();
+        modelBuilder.Entity<AdminPanel>()
+            .Property(x => x.Note)
+            .HasColumnName("note")
+            .HasColumnType("TEXT")
+            .HasDefaultValue("Note about this account")
+            .IsRequired();
+        modelBuilder.Entity<AdminPanel>()
+            .Property(x => x.Login)
+            .HasColumnName("login")
+            .HasColumnType("VARCHAR")
+            .HasDefaultValue(null)
+            .HasMaxLength(32)
+            .IsRequired();
+        modelBuilder.Entity<AdminPanel>()
+            .Property(x => x.Password)
+            .HasColumnName("password")
+            .HasColumnType("VARCHAR")
+            .HasDefaultValue(null)
+            .HasMaxLength(64)
             .IsRequired();
 
         // RelationShips
