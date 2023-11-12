@@ -8,6 +8,7 @@ using Services.Helper;
 namespace FormAPI;
     public class Program
     {
+        // test
         // Do zrobienia -- ToString do Modeli z uzyciem slowa kluczowego Partial.
         // Do zrobienia -- Dynamiczna walidacja uzytkownika, jesli takowy istnieje w bazie danych.
         // W momencie gdy po froncie uzytkownik dodaje imie i nazwisko
