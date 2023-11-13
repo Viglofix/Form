@@ -3,6 +3,7 @@ using System;
 using DataBase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DataBase.Migrations
 {
     [DbContext(typeof(FormDbContext))]
-    partial class FormDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231113141133_MultiFileUpdate")]
+    partial class MultiFileUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -147,15 +150,13 @@ namespace DataBase.Migrations
                 {
                     b.Property<long>("Id_File")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("BIGINT")
-                        .HasColumnName("id_file");
+                        .HasColumnType("BIGINT");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id_File"));
                     NpgsqlPropertyBuilderExtensions.HasIdentityOptions(b.Property<long>("Id_File"), 1L, null, null, null, null, null);
 
                     b.Property<long?>("ClickUp_Id")
-                        .HasColumnType("BIGINT")
-                        .HasColumnName("click_up_id");
+                        .HasColumnType("BIGINT");
 
                     b.Property<byte[]>("FileData")
                         .IsRequired()
@@ -168,10 +169,8 @@ namespace DataBase.Migrations
                         .HasColumnType("VARCHAR")
                         .HasColumnName("file_name");
 
-                    b.Property<string>("FileSize")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasColumnName("file_size");
+                    b.Property<long>("FileSize")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id_File");
 
