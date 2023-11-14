@@ -23,6 +23,7 @@ public class FormDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
         // Primary Keys
         modelBuilder.Entity<ClickUpRequiredDataModel>()
             .HasKey(x => x.Id);
@@ -324,6 +325,5 @@ public class FormDbContext : DbContext
             .WithMany(x => x.DropFiles)
             .HasForeignKey(x => x.ClickUp_Id);
 
-        base.OnModelCreating(modelBuilder);
     }
 }
