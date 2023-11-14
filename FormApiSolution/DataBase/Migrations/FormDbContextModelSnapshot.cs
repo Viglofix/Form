@@ -74,10 +74,6 @@ namespace DataBase.Migrations
                         .HasColumnType("DATE")
                         .HasColumnName("date_of_birth");
 
-                    b.Property<long?>("DropFile_Id")
-                        .HasColumnType("BIGINT")
-                        .HasColumnName("drop_file_id");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("TEXT")
@@ -138,8 +134,6 @@ namespace DataBase.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DropFile_Id");
-
                     b.HasIndex("EnglishLevel_Id");
 
                     b.HasIndex("Specialization_Id");
@@ -151,12 +145,17 @@ namespace DataBase.Migrations
 
             modelBuilder.Entity("DataBase.Model.DropFilesModel", b =>
                 {
-                    b.Property<long>("FileID")
+                    b.Property<long>("Id_File")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("BIGINT");
+                        .HasColumnType("BIGINT")
+                        .HasColumnName("id_file");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("FileID"));
-                    NpgsqlPropertyBuilderExtensions.HasIdentityOptions(b.Property<long>("FileID"), 1L, null, null, null, null, null);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id_File"));
+                    NpgsqlPropertyBuilderExtensions.HasIdentityOptions(b.Property<long>("Id_File"), 1L, null, null, null, null, null);
+
+                    b.Property<long?>("ClickUp_Id")
+                        .HasColumnType("BIGINT")
+                        .HasColumnName("click_up_id");
 
                     b.Property<byte[]>("FileData")
                         .IsRequired()
@@ -169,10 +168,14 @@ namespace DataBase.Migrations
                         .HasColumnType("VARCHAR")
                         .HasColumnName("file_name");
 
-                    b.Property<long>("FileSize")
-                        .HasColumnType("bigint");
+                    b.Property<string>("FileSize")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("file_size");
 
-                    b.HasKey("FileID");
+                    b.HasKey("Id_File");
+
+                    b.HasIndex("ClickUp_Id");
 
                     b.ToTable("drop_files");
                 });
@@ -281,10 +284,6 @@ namespace DataBase.Migrations
 
             modelBuilder.Entity("DataBase.Model.ClickUpRequiredDataModel", b =>
                 {
-                    b.HasOne("DataBase.Model.DropFilesModel", "DropFiles")
-                        .WithMany("clickUpRequiredDataModels")
-                        .HasForeignKey("DropFile_Id");
-
                     b.HasOne("DataBase.Model.EnglishLevelModel", "EnglishLevel")
                         .WithMany("ClickUpRequiredDataModels")
                         .HasForeignKey("EnglishLevel_Id");
@@ -297,13 +296,20 @@ namespace DataBase.Migrations
                         .WithMany("clickUpRequiredDataModel")
                         .HasForeignKey("Status_Id");
 
-                    b.Navigation("DropFiles");
-
                     b.Navigation("EnglishLevel");
 
                     b.Navigation("Specialization");
 
                     b.Navigation("Status");
+                });
+
+            modelBuilder.Entity("DataBase.Model.DropFilesModel", b =>
+                {
+                    b.HasOne("DataBase.Model.ClickUpRequiredDataModel", "clickUpRequiredDataModel")
+                        .WithMany("DropFiles")
+                        .HasForeignKey("ClickUp_Id");
+
+                    b.Navigation("clickUpRequiredDataModel");
                 });
 
             modelBuilder.Entity("DataBase.Model.StatusOfRecruiterModel", b =>
@@ -315,9 +321,9 @@ namespace DataBase.Migrations
                     b.Navigation("TypeOfPracticeModel");
                 });
 
-            modelBuilder.Entity("DataBase.Model.DropFilesModel", b =>
+            modelBuilder.Entity("DataBase.Model.ClickUpRequiredDataModel", b =>
                 {
-                    b.Navigation("clickUpRequiredDataModels");
+                    b.Navigation("DropFiles");
                 });
 
             modelBuilder.Entity("DataBase.Model.EnglishLevelModel", b =>

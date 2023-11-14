@@ -42,30 +42,33 @@ namespace FormAPI.Controllers
             }
             return Ok(await specObj);
         }
-
-        [HttpPost("CreateUser")]
-        public async Task<IActionResult> CreateUser(ClickUpRequiredDataModel clickUp)
+        [AllowAnonymous]
+        [HttpGet("GetAllEnglishLevels")]
+        public async Task<IActionResult> GetAllEnglishLevels()
         {
-            /*  var obj = _clickUpService.CreateUser(clickUp);
-              if(obj is null)
-              {
-                  return NotFound();
-              }
-              return Ok(await obj); */
-            /*   var query = "SELECT NEXTVAL('\"StatusOfRecruiterModel_id_status_of_recruiter_seq\"')";
-              var nextval = _dbContext.status_of_recruiter.FromSqlRaw(query);
-              string result = nextval.ToString(); */
-            /* long? seq;
-            using (var npqsqlConnection = new NpgsqlConnection(_configuration.GetConnectionString("FormDb")))
+            var englishObj = _clickUpService.GetAllEnglishLevel();
+            if(englishObj is null)
             {
-                await npqsqlConnection.OpenAsync();
-                using (var npgsqlCommand = new NpgsqlCommand("SELECT NEXTVAL('\"StatusOfRecruiterModel_id_status_of_recruiter_seq\"')",npqsqlConnection))
-                {
-                    seq = (long?)npgsqlCommand.ExecuteScalar();
-                }
-                await npqsqlConnection.CloseAsync();
-            } */
+                return NotFound();
+            }
+            return Ok(await englishObj);
+        }
+        [AllowAnonymous]
+        [HttpPost("CreateDropFile")]
+        public async Task<IActionResult> CreateDropFile(List<IFormFile> files)
+        {
+            var obj = _clickUpService.CreateDropFile(files);
+            if(obj is null)
+            {
+                return NotFound();
+            }
+            return Ok(await obj);
+        }
 
+        [AllowAnonymous]
+        [HttpPost("CreateUser")]
+        public async Task<IActionResult> CreateUser(ClickUpRequiredDataModel clickUp) 
+        {
             var obj = _clickUpService.CreateUser(clickUp);
             if(obj is null)
             {

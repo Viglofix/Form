@@ -35,7 +35,7 @@ public class FormDbContext : DbContext
         modelBuilder.Entity<EnglishLevelModel>()
             .HasKey(x => x.Id_EnglishLevel);
         modelBuilder.Entity<DropFilesModel>()
-            .HasKey(x => x.FileID);
+            .HasKey(x => x.Id_File);
         modelBuilder.Entity<AdminPanel>()
             .HasKey(x => x.Id_Admin);
 
@@ -92,12 +92,12 @@ public class FormDbContext : DbContext
             .HasColumnType("BIGINT")
             .HasDefaultValue(null)
             .IsRequired(false);
-        modelBuilder.Entity<ClickUpRequiredDataModel>()
+       /* modelBuilder.Entity<ClickUpRequiredDataModel>()
             .Property(x => x.DropFile_Id)
             .HasColumnName("drop_file_id")
             .HasColumnType("BIGINT")
             .HasDefaultValue(null)
-            .IsRequired(false);
+            .IsRequired(false); */
         // End of Foreign Keys
 
         modelBuilder.Entity<ClickUpRequiredDataModel>()
@@ -149,12 +149,6 @@ public class FormDbContext : DbContext
             .HasColumnType("TEXT")
             .HasDefaultValue(null)
             .IsRequired(false); 
-      /*  modelBuilder.Entity<ClickUpRequiredDataModel>()
-            .Property(x=>x.TypeOfPractice_Id)
-            .HasColumnName("type_of_practice_id")
-            .HasColumnType("BIGINT")
-            .HasDefaultValue(null)
-            .IsRequired(false); */
 
         // SpecializationModel properties configuration
         modelBuilder.Entity<SpecializationModel>()
@@ -237,8 +231,8 @@ public class FormDbContext : DbContext
             .IsRequired();
         // DropFiles properties configuration
         modelBuilder.Entity<DropFilesModel>()
-            .Property(x => x.FileID)
-            .HasColumnType("file_id")
+            .Property(x => x.Id_File)
+            .HasColumnName("id_file")
             .HasColumnType("BIGINT")
             .UseIdentityByDefaultColumn()
             .HasIdentityOptions(startValue: 1)
@@ -251,10 +245,23 @@ public class FormDbContext : DbContext
             .HasDefaultValue(null)
             .IsRequired();
         modelBuilder.Entity<DropFilesModel>()
+            .Property(x => x.FileSize)
+            .HasColumnName("file_size")
+            .HasColumnType("TEXT")
+            .HasDefaultValue(null)
+            .IsRequired();
+        modelBuilder.Entity<DropFilesModel>()
             .Property(x => x.FileData)
             .HasColumnName("file_data")
             .HasColumnType("BYTEA")
             .IsRequired();
+        modelBuilder.Entity<DropFilesModel>()
+            .Property(x => x.ClickUp_Id)
+            .HasColumnName("click_up_id")
+            .HasColumnType("BIGINT")
+            .IsRequired(false);
+        modelBuilder.Entity<DropFilesModel>()
+            .Ignore(x => x.File);
 
         // admin panel
         modelBuilder.Entity<AdminPanel>()
@@ -308,10 +315,14 @@ public class FormDbContext : DbContext
             .HasOne<EnglishLevelModel>(x => x.EnglishLevel)
             .WithMany(x => x.ClickUpRequiredDataModels)
             .HasForeignKey(x => x.EnglishLevel_Id);
-        modelBuilder.Entity<ClickUpRequiredDataModel>()
-            .HasOne<DropFilesModel>(x => x.DropFiles)
-            .WithMany(x => x.clickUpRequiredDataModels)
-            .HasForeignKey(x => x.DropFile_Id);
+        /* modelBuilder.Entity<ClickUpRequiredDataModel>()
+             .HasOne<DropFilesModel>(x => x.DropFiles)
+             .WithMany(x => x.clickUpRequiredDataModels)
+             .HasForeignKey(x => x.DropFile_Id); */
+        modelBuilder.Entity<DropFilesModel>()
+            .HasOne<ClickUpRequiredDataModel>(x => x.clickUpRequiredDataModel)
+            .WithMany(x => x.DropFiles)
+            .HasForeignKey(x => x.ClickUp_Id);
 
         base.OnModelCreating(modelBuilder);
     }

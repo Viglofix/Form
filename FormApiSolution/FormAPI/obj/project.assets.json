@@ -1457,6 +1457,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
+          "Microsoft.AspNetCore": "2.2.0",
           "Microsoft.EntityFrameworkCore": "7.0.13",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.11"
         },
@@ -3406,19 +3407,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\vig\\.nuget\\packages\\": {}
+    "C:\\Users\\Vig\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "B:\\PraktykiAPI\\Form\\FormApiSolution\\FormAPI\\FormAPI.csproj",
+      "projectUniqueName": "D:\\PraktykiApi\\Form\\FormApiSolution\\FormAPI\\FormAPI.csproj",
       "projectName": "FormAPI",
-      "projectPath": "B:\\PraktykiAPI\\Form\\FormApiSolution\\FormAPI\\FormAPI.csproj",
-      "packagesPath": "C:\\Users\\vig\\.nuget\\packages\\",
-      "outputPath": "B:\\PraktykiAPI\\Form\\FormApiSolution\\FormAPI\\obj\\",
+      "projectPath": "D:\\PraktykiApi\\Form\\FormApiSolution\\FormAPI\\FormAPI.csproj",
+      "packagesPath": "C:\\Users\\Vig\\.nuget\\packages\\",
+      "outputPath": "D:\\PraktykiApi\\Form\\FormApiSolution\\FormAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\vig\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Vig\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3432,11 +3433,11 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "B:\\PraktykiAPI\\Form\\FormApiSolution\\DataBase\\DataBase.csproj": {
-              "projectPath": "B:\\PraktykiAPI\\Form\\FormApiSolution\\DataBase\\DataBase.csproj"
+            "D:\\PraktykiApi\\Form\\FormApiSolution\\DataBase\\DataBase.csproj": {
+              "projectPath": "D:\\PraktykiApi\\Form\\FormApiSolution\\DataBase\\DataBase.csproj"
             },
-            "B:\\PraktykiAPI\\Form\\FormApiSolution\\Services\\Services.csproj": {
-              "projectPath": "B:\\PraktykiAPI\\Form\\FormApiSolution\\Services\\Services.csproj"
+            "D:\\PraktykiApi\\Form\\FormApiSolution\\Services\\Services.csproj": {
+              "projectPath": "D:\\PraktykiApi\\Form\\FormApiSolution\\Services\\Services.csproj"
             }
           }
         }
@@ -3489,7 +3490,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }
