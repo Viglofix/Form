@@ -1,0 +1,22 @@
+{
+  "fullName": "string",
+  "email": "string",
+  "phoneNumeber": "string",
+  "dateOfBirth": "2023-11-09T16:51:06.008Z",
+  "specialization_Id": 1, 
+  "englishLevel_Id": 1,
+  "status": {
+    "nameOfTheUniversity": "string",
+    "startDateOfPractice": "2023-11-09T16:51:06.008Z",
+    "endDateOfPractice": "2023-11-09T16:51:06.008Z",
+    "typeOfPracticeModel_Id": 1
+  },
+  "githubAccount": "string",
+  "programmingKnowledge": "string",
+  "graphicInspitation": "string",
+  "graphicProgram": "string",
+  "experience": "string",
+  "finishedProject": "string",
+  "expectation": "string",
+  "additionalInformation": "string"
+}
