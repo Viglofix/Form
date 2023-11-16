@@ -23,6 +23,30 @@ public class ClickUpService : IClickUpService
         _formDbContext = formDbContext;
         _configuration = configuration;
     }
+<<<<<<< Updated upstream
+=======
+    // cos
+    
+    public async Task<List<DropFilesModel>> CreateDropFile(List<IFormFile> files)
+    {
+            FileManagementService fileManagementService = new(_formDbContext);
+            long? seq_clickUp = null;
+            using (var connection = new NpgsqlConnection(_configuration.GetConnectionString("FormDb")))
+            {
+                await connection.OpenAsync();
+                using (var command = new NpgsqlCommand(@"SELECT last_value FROM ""clickUp_required_data_id_seq""", connection))
+                {
+                    seq_clickUp = (long?)command.ExecuteScalar();
+                }
+                await connection.CloseAsync();
+            }
+
+            var db = fileManagementService.DownloadFile(files, seq_clickUp);
+            await _formDbContext.drop_files.AddRangeAsync(db!);
+            await _formDbContext.SaveChangesAsync();
+            return db!;
+    }
+>>>>>>> Stashed changes
 
     public async Task<ApiResponse> CreateUser(ClickUpRequiredDataModel model)
     {
