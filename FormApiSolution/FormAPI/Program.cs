@@ -4,13 +4,12 @@ using Services.Container;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication;
 using Services.Helper;
+using Microsoft.AspNetCore.RateLimiting;
+using System.Threading.RateLimiting;
 
 namespace FormAPI;
     public class Program
     {
-    //test3
-        // test2
-        // test
         // Do zrobienia -- ToString do Modeli z uzyciem slowa kluczowego Partial.
         // Do zrobienia -- Dynamiczna walidacja uzytkownika, jesli takowy istnieje w bazie danych.
         // W momencie gdy po froncie uzytkownik dodaje imie i nazwisko
@@ -35,6 +34,16 @@ namespace FormAPI;
                     optConfig.AllowAnyHeader();
                 });
             });
+            builder.Services.AddRateLimiter(options =>
+            {
+                options.AddFixedWindowLimiter("fixed",opt =>
+                {
+                    opt.PermitLimit = 1;
+                    opt.Window = TimeSpan.FromSeconds(5);
+                    opt.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+                    opt.QueueLimit = 2;
+                });
+            });
 
             // DbContext -- Section
             builder.Services.AddDbContext<FormDbContext>(opt => opt.UseNpgsql(builder.Configuration.GetConnectionString("FormDb")));
@@ -46,6 +55,7 @@ namespace FormAPI;
 
             var app = builder.Build();
             app.UseCors("UniversalPolicy");
+            app.UseRateLimiter();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

@@ -11,21 +11,22 @@ public class FormDbContext : DbContext
          
     }
     public virtual DbSet<ClickUpRequiredDataModel> clickup_required_data { get; set; }
-    public virtual DbSet<SpecializationModel> specializations { get; set; }
-    public virtual DbSet<StatusOfRecruiterModel> status_of_recruiter { get; set; }
-    public virtual DbSet<TypeOfPracticeModel> type_of_practice { get; set; }
-    public virtual DbSet<EnglishLevelModel> english_level { get; set; }
+   // public virtual DbSet<SpecializationModel> specializations { get; set; }
+   // public virtual DbSet<StatusOfRecruiterModel> status_of_recruiter { get; set; }
+   // public virtual DbSet<TypeOfPracticeModel> type_of_practice { get; set; }
+   // public virtual DbSet<EnglishLevelModel> english_level { get; set; }
     public virtual DbSet<DropFilesModel> drop_files { get; set; }
     public virtual DbSet<AdminPanel> admin_panel { get; set; }
-    /*    public virtual DbSet<DropFilesModel> DropFiles { get; set; }
-       public virtual DbSet<EnglishLevelModel> EnglishLevel { get; set; }
-       public virtual DbSet<StatusOfRecruiterModel> StatusOfRecruiter { get; set; } */
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // Primary Keys
         modelBuilder.Entity<ClickUpRequiredDataModel>()
             .HasKey(x => x.Id);
+        modelBuilder.Entity<AdminPanel>()
+            .HasKey(x => x.Id_Admin);
+        modelBuilder.Entity<DropFilesModel>()
+            .HasKey(x => x.Id_File); 
+        /* Start Primary Keys
         modelBuilder.Entity<SpecializationModel>()
             .HasKey(x => x.Id_Specialization);
         modelBuilder.Entity<StatusOfRecruiterModel>()
@@ -33,11 +34,7 @@ public class FormDbContext : DbContext
         modelBuilder.Entity<TypeOfPracticeModel>()
             .HasKey(x => x.Id_TypeOfPractice);
         modelBuilder.Entity<EnglishLevelModel>()
-            .HasKey(x => x.Id_EnglishLevel);
-        modelBuilder.Entity<DropFilesModel>()
-            .HasKey(x => x.FileID);
-        modelBuilder.Entity<AdminPanel>()
-            .HasKey(x => x.Id_Admin);
+            .HasKey(x => x.Id_EnglishLevel); */
 
         // ClickUpRequiredDataModel Properties Configuration
         modelBuilder.Entity<ClickUpRequiredDataModel>()
@@ -73,33 +70,6 @@ public class FormDbContext : DbContext
             .HasDefaultValue(null)
             .IsRequired();
 
-        // Foreign Keys
-        modelBuilder.Entity<ClickUpRequiredDataModel>()
-            .Property(x => x.Specialization_Id)
-            .HasColumnName("specialization_id")
-            .HasColumnType("BIGINT")
-            .HasDefaultValue(null)
-            .IsRequired(false);
-        modelBuilder.Entity<ClickUpRequiredDataModel>()
-            .Property(x => x.Status_Id)
-            .HasColumnName("status_id")
-            .HasColumnType("BIGINT")
-            .HasDefaultValue(null)
-            .IsRequired(false);
-        modelBuilder.Entity<ClickUpRequiredDataModel>()
-            .Property(x => x.EnglishLevel_Id)
-            .HasColumnName("english_level_id")
-            .HasColumnType("BIGINT")
-            .HasDefaultValue(null)
-            .IsRequired(false);
-        modelBuilder.Entity<ClickUpRequiredDataModel>()
-            .Property(x => x.DropFile_Id)
-            .HasColumnName("drop_file_id")
-            .HasColumnType("BIGINT")
-            .HasDefaultValue(null)
-            .IsRequired(false);
-        // End of Foreign Keys
-
         modelBuilder.Entity<ClickUpRequiredDataModel>()
             .Property(x=>x.GithubAccount)
             .HasColumnName("github_account")
@@ -107,8 +77,8 @@ public class FormDbContext : DbContext
             .HasDefaultValue(null)
             .IsRequired(false);
         modelBuilder.Entity<ClickUpRequiredDataModel>()
-            .Property(x => x.ProgrammingKnowledge)
-            .HasColumnName("programmin_knowledge")
+            .Property(x => x.ProgrammingLangugages)
+            .HasColumnName("programming_languages")
             .HasColumnType("VARCHAR")
             .HasMaxLength(256)
             .HasDefaultValue(null)
@@ -120,8 +90,8 @@ public class FormDbContext : DbContext
             .HasDefaultValue(null)
             .IsRequired(false);
         modelBuilder.Entity<ClickUpRequiredDataModel>()
-            .Property(x => x.GraphicProgram)
-            .HasColumnName("graphic_program")
+            .Property(x => x.ProficientGraphicTools)
+            .HasColumnName("proficient_graphic_tools")
             .HasColumnType("TEXT")
             .HasDefaultValue(null)
             .IsRequired(false);
@@ -137,25 +107,62 @@ public class FormDbContext : DbContext
             .HasColumnType("TEXT")
             .HasDefaultValue(null)
             .IsRequired(false);
-     modelBuilder.Entity<ClickUpRequiredDataModel>()
-           .Property(x => x.Expectation)
-           .HasColumnName("expectation")
+       modelBuilder.Entity<ClickUpRequiredDataModel>()
+           .Property(x => x.LearningGoals)
+           .HasColumnName("learning_goals")
            .HasColumnType("TEXT")
            .HasDefaultValue(null)
            .IsRequired();
-       modelBuilder.Entity<ClickUpRequiredDataModel>()
+        modelBuilder.Entity<ClickUpRequiredDataModel>()
+            .Property(x => x.GoalOfAcademyParticipation)
+            .HasColumnName("goal_of_academy_participation")
+            .HasColumnType("VARCHAR")
+            .HasMaxLength(64)
+            .HasDefaultValue(null)
+            .IsRequired();
+        modelBuilder.Entity<ClickUpRequiredDataModel>()
+            .Property(x => x.PracticesStart)
+            .HasColumnName("practices_start")
+            .HasColumnType("DATE")
+            .HasDefaultValue(null)
+            .IsRequired();
+        modelBuilder.Entity<ClickUpRequiredDataModel>()
+            .Property(x => x.PracticesEnd)
+            .HasColumnName("practices_end")
+            .HasColumnType("DATE")
+            .HasDefaultValue(null)
+            .IsRequired();
+        modelBuilder.Entity<ClickUpRequiredDataModel>()
             .Property(x => x.AdditionalInformation)
             .HasColumnName("additional_information")
             .HasColumnType("TEXT")
             .HasDefaultValue(null)
-            .IsRequired(false); 
-      /*  modelBuilder.Entity<ClickUpRequiredDataModel>()
-            .Property(x=>x.TypeOfPractice_Id)
-            .HasColumnName("type_of_practice_id")
-            .HasColumnType("BIGINT")
-            .HasDefaultValue(null)
-            .IsRequired(false); */
+            .IsRequired(false);
+        modelBuilder.Entity<ClickUpRequiredDataModel>()
+            .Ignore(x => x.formFile);
 
+        /* Foreign Keys
+  modelBuilder.Entity<ClickUpRequiredDataModel>()
+      .Property(x => x.Specialization_Id)
+      .HasColumnName("specialization_id")
+      .HasColumnType("BIGINT")
+      .HasDefaultValue(null)
+      .IsRequired(false);
+  modelBuilder.Entity<ClickUpRequiredDataModel>()
+      .Property(x => x.Status_Id)
+      .HasColumnName("status_id")
+      .HasColumnType("BIGINT")
+      .HasDefaultValue(null)
+      .IsRequired(false);
+  modelBuilder.Entity<ClickUpRequiredDataModel>()
+      .Property(x => x.EnglishLevel_Id)
+      .HasColumnName("english_level_id")
+      .HasColumnType("BIGINT")
+      .HasDefaultValue(null)
+      .IsRequired(false);
+  End of Foreign Keys */
+
+        /*
         // SpecializationModel properties configuration
         modelBuilder.Entity<SpecializationModel>()
             .Property(x => x.Id_Specialization)
@@ -234,11 +241,12 @@ public class FormDbContext : DbContext
             .HasColumnType("VARCHAR")
             .HasMaxLength(2)
             .HasDefaultValue("B1")
-            .IsRequired();
-        // DropFiles properties configuration
+            .IsRequired(); */
+
+        //DropFiles properties configuration
         modelBuilder.Entity<DropFilesModel>()
-            .Property(x => x.FileID)
-            .HasColumnType("file_id")
+            .Property(x => x.Id_File)
+            .HasColumnName("id_file")
             .HasColumnType("BIGINT")
             .UseIdentityByDefaultColumn()
             .HasIdentityOptions(startValue: 1)
@@ -251,10 +259,21 @@ public class FormDbContext : DbContext
             .HasDefaultValue(null)
             .IsRequired();
         modelBuilder.Entity<DropFilesModel>()
+            .Property(x => x.FileSize)
+            .HasColumnName("file_size")
+            .HasColumnType("TEXT")
+            .HasDefaultValue(null)
+            .IsRequired();
+        modelBuilder.Entity<DropFilesModel>()
             .Property(x => x.FileData)
             .HasColumnName("file_data")
             .HasColumnType("BYTEA")
             .IsRequired();
+        modelBuilder.Entity<DropFilesModel>()
+            .Property(x => x.ClickUp_Id)
+            .HasColumnName("click_up_id")
+            .HasColumnType("BIGINT")
+            .IsRequired(false);
 
         // admin panel
         modelBuilder.Entity<AdminPanel>()
@@ -285,21 +304,17 @@ public class FormDbContext : DbContext
             .HasMaxLength(64)
             .IsRequired();
 
+
         // RelationShips
-        // Many-To-One Relationship ClickUpRequiredDataModel >--| SpecializationModel
+        /*
         modelBuilder.Entity<ClickUpRequiredDataModel>()
             .HasOne<SpecializationModel>(x => x.Specialization)
             .WithMany(x => x.clickUpRequiredDataModel)
             .HasForeignKey(x => x.Specialization_Id);
-        // Many-To-One Relationship ClickUpRequiredDataModel > --| StatusOfRecruiterModel
        modelBuilder.Entity<ClickUpRequiredDataModel>()
             .HasOne<StatusOfRecruiterModel>(x => x.Status)
             .WithMany(x => x.clickUpRequiredDataModel)
             .HasForeignKey(x => x.Status_Id); 
-       /* modelBuilder.Entity<ClickUpRequiredDataModel>()
-            .HasOne<TypeOfPracticeModel>(x => x.TypeOfPractice)
-            .WithMany(x => x.ClickUpRequiredDataModels)
-            .HasForeignKey(x => x.TypeOfPractice_Id); */
         modelBuilder.Entity<StatusOfRecruiterModel>()
             .HasOne<TypeOfPracticeModel>(x => x.TypeOfPracticeModel)
             .WithMany(x => x.StatusOfRecruiterModels)
@@ -308,10 +323,14 @@ public class FormDbContext : DbContext
             .HasOne<EnglishLevelModel>(x => x.EnglishLevel)
             .WithMany(x => x.ClickUpRequiredDataModels)
             .HasForeignKey(x => x.EnglishLevel_Id);
+        modelBuilder.Entity<DropFilesModel>()
+            .HasOne<ClickUpRequiredDataModel>(x => x.clickUpRequiredDataModel)
+            .WithMany(x => x.DropFiles)
+            .HasForeignKey(x => x.ClickUp_Id); */
         modelBuilder.Entity<ClickUpRequiredDataModel>()
-            .HasOne<DropFilesModel>(x => x.DropFiles)
-            .WithMany(x => x.clickUpRequiredDataModels)
-            .HasForeignKey(x => x.DropFile_Id);
+            .HasOne(x => x.DropFilesModel)
+            .WithOne(x => x.clickUpRequiredDataModel)
+            .HasForeignKey<DropFilesModel>(x => x.ClickUp_Id);
 
         base.OnModelCreating(modelBuilder);
     }
