@@ -6,10 +6,10 @@ using Services.Helper;
 using Services.Service;
 using Npgsql;
 using Microsoft.Extensions.Configuration;
-using Services.Container;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore.Migrations.Operations;
+using Services.Container;
 
 namespace Services.Container;
 
@@ -47,6 +47,7 @@ public class ClickUpService : IClickUpService
 
     public async Task<ApiResponse> CreateUser(ClickUpRequiredDataModel model)
     {
+        FileManagementService service = new(_formDbContext);
         ApiResponse _response = new();
         try
         {
@@ -54,9 +55,8 @@ public class ClickUpService : IClickUpService
             {
                 throw new Exception("model not found");
             }
-            // var sqlQuery = _formDbContext.status_of_recruiter.FromSql(@$"SELECT nextval('StatusOfRecruiterModel_id_status_of_recruiter_seq')");
 
-            long? seq = null;
+            /* long? seq = null;
             long? seqFile = null;
             using (var connection = new NpgsqlConnection(_configuration.GetConnectionString("FormDb")))
             {
@@ -70,9 +70,42 @@ public class ClickUpService : IClickUpService
                     seqFile = (long?)command.ExecuteScalar();
                 }
                 await connection.CloseAsync();
+            }*/
+
+            long seq = 0;
+            using(var connection = new NpgsqlConnection(_configuration.GetConnectionString("FormDb")))
+            {
+                using(var command = new NpgsqlCommand(@"'""clickUp_required_data_id_seq""'"))
+                {
+                    seq = (long)command.ExecuteScalar();
+                }
             }
 
             ClickUpRequiredDataModel obj = new()
+            {
+                Id = seq,
+                FullName = model.FullName,
+                Email = model.Email,
+                PhoneNumeber = model.PhoneNumeber,
+                DateOfBirth = model.DateOfBirth,
+                Specialization = model.Specialization,
+                NameOfUniversityOrOccupation = model.NameOfUniversityOrOccupation,
+                GithubAccount = model.GithubAccount,
+                ProgrammingLangugages = model.ProgrammingLangugages,
+                GraphicInspitation = model.GraphicInspitation,
+                ProficientGraphicTools = model.ProficientGraphicTools,
+                Experience = model.english_Level,
+                FinishedProject = model.FinishedProject,
+                english_Level = model.english_Level,
+                LearningGoals = model.LearningGoals,
+                GoalOfAcademyParticipation = model.GoalOfAcademyParticipation,
+                PracticesStart = model.PracticesStart,
+                PracticesEnd = model.PracticesEnd,
+                AdditionalInformation = model.AdditionalInformation,
+                DropFilesModel = service.DownloadSingleFile(model.formFile!,seq)
+            };
+
+           /* ClickUpRequiredDataModel obj = new()
             {
                 FullName = model.FullName,
                 Email = model.Email,
@@ -89,14 +122,6 @@ public class ClickUpService : IClickUpService
                     TypeOfPracticeModel_Id = model.Status.TypeOfPracticeModel_Id
                 },
                 EnglishLevel_Id = model.EnglishLevel_Id,
-                    // DropFile_Id = seqFile!.Value,
-                    /* DropFiles = new DropFilesModel()
-                     {
-                         FileID = seqFile!.Value,
-                         FileName = model.DropFiles.FileName,
-                         FileSize = model.DropFiles.FileSize,
-                         FileData = model.DropFiles.FileData
-                     }, */
                     GithubAccount = model.GithubAccount,
                     ProgrammingKnowledge = model.ProgrammingKnowledge,
                     GraphicInspitation = model.GraphicInspitation,
@@ -105,7 +130,7 @@ public class ClickUpService : IClickUpService
                     FinishedProject = model.FinishedProject,
                     Expectation = model.Expectation,
                     AdditionalInformation = model.AdditionalInformation
-                };
+                }; */
 
             await _formDbContext.clickup_required_data.AddAsync(obj);
             await _formDbContext.SaveChangesAsync();
@@ -122,7 +147,7 @@ public class ClickUpService : IClickUpService
         return _response;
     }
 
-    public async Task<List<EnglishLevelModel>> GetAllEnglishLevel()
+    /* public async Task<List<EnglishLevelModel>> GetAllEnglishLevel()
     {
         var table = await _formDbContext.english_level.ToListAsync();
         return table;
@@ -132,5 +157,5 @@ public class ClickUpService : IClickUpService
     {
         var listToReturn =  await _formDbContext.specializations.ToListAsync();
         return listToReturn;
-    }
+    } */
 }

@@ -7,7 +7,6 @@ public class DropFilesModel : IDisposable
     public required string FileName { get; set; }
     public long FileSize { get; set; }
     public byte[]? FileData { get; set; }
-    public List<IFormFile>? File { get; set; }
     public long? ClickUp_Id { get; set; }
     public virtual ClickUpRequiredDataModel? clickUpRequiredDataModel { get; set; }
 

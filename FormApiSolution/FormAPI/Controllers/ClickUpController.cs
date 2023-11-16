@@ -10,10 +10,12 @@ using Microsoft.AspNetCore.Connections;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.RateLimiting;
 
 namespace FormAPI.Controllers
 {
     [Authorize]
+    [EnableRateLimiting("fixed")]
     [Route("[controller]")]
     //[DisableCors]
     [ApiController]
@@ -31,7 +33,7 @@ namespace FormAPI.Controllers
             _configuration = configuration;
         }
 
-        [AllowAnonymous]
+      /*  [AllowAnonymous]
         [HttpGet("GetAllSpecializations")]
         public async Task<IActionResult> GetAllSpecializations()
         {
@@ -52,7 +54,7 @@ namespace FormAPI.Controllers
                 return NotFound();
             }
             return Ok(await englishObj);
-        }
+        } */
         [AllowAnonymous]
         [HttpPost("CreateDropFile")]
         public async Task<IActionResult> CreateDropFile(List<IFormFile> files)

@@ -15,6 +15,33 @@ public class FileManagementService : IFileManagementService
         _formDbContext = formDbContext;
     }
 
+    public DropFilesModel DownloadSingleFile(IFormFile file, long id)
+    {
+        try
+        {
+            if (file is null || file.Length <= 0)
+            {
+                throw new Exception("No files found");
+            }
+                DropFilesModel? db = null;
+                using (var memory = new MemoryStream())
+                {
+                    file.CopyTo(memory);
+                    db = new DropFilesModel()
+                    {
+                        FileName = file.FileName,
+                        FileSize = file.Length,
+                        FileData = memory.ToArray(),
+                        ClickUp_Id = id
+                    };
+                }
+           return db;
+        }
+        catch (Exception ex)
+        {
+         return new DropFilesModel() { FileName = ex.Message };
+        }
+    }
     public List<DropFilesModel>? DownloadFile(List<IFormFile>? file, long? id)
     {
         try
