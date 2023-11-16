@@ -2,3 +2,13 @@
 *.cache
 *.vsidx
 *.vsidx
+*.cache
+FormApiSolution/DataBase/obj/Debug/net7.0/DataBase.assets.cache
+FormApiSolution/DataBase/obj/Debug/net7.0/DataBase.csproj.AssemblyReference.cache
+FormApiSolution/DataBase/obj/Debug/net7.0/DataBase.GeneratedMSBuildEditorConfig.editorconfig
+FormApiSolution/FormAPI/obj/Debug/net7.0/FormAPI.assets.cache
+FormApiSolution/FormAPI/obj/Debug/net7.0/FormAPI.csproj.AssemblyReference.cache
+FormApiSolution/FormAPI/obj/Debug/net7.0/FormAPI.GeneratedMSBuildEditorConfig.editorconfig
+FormApiSolution/Services/obj/Debug/net7.0/Services.assets.cache
+FormApiSolution/Services/obj/Debug/net7.0/Services.csproj.AssemblyReference.cache
+FormApiSolution/Services/obj/Debug/net7.0/Services.GeneratedMSBuildEditorConfig.editorconfig
