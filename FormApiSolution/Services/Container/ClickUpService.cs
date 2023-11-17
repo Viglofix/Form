@@ -45,7 +45,7 @@ public class ClickUpService : IClickUpService
             return db!;
     }
 
-    public async Task<ApiResponse> CreateUser(ClickUpRequiredDataModel model)
+    public async Task<ApiResponse> CreateUser(ClickUpRequiredDataModelRequest model)
     {
         FileManagementService service = new(_formDbContext);
         ApiResponse _response = new();
@@ -75,10 +75,12 @@ public class ClickUpService : IClickUpService
             long seq = 0;
             using(var connection = new NpgsqlConnection(_configuration.GetConnectionString("FormDb")))
             {
-                using(var command = new NpgsqlCommand(@"'""clickUp_required_data_id_seq""'"))
+                await connection.OpenAsync();
+                using(var command = new NpgsqlCommand(@"SELECT NEXTVAL('""clickup_required_data_id_seq""')",connection))
                 {
                     seq = (long)command.ExecuteScalar();
                 }
+                await connection.CloseAsync();
             }
 
             ClickUpRequiredDataModel obj = new()
@@ -102,7 +104,7 @@ public class ClickUpService : IClickUpService
                 PracticesStart = model.PracticesStart,
                 PracticesEnd = model.PracticesEnd,
                 AdditionalInformation = model.AdditionalInformation,
-                DropFilesModel = service.DownloadSingleFile(model.formFile!,seq)
+                DropFilesModel = service.DownloadSingleFile(model.FormFile!,seq)
             };
 
            /* ClickUpRequiredDataModel obj = new()

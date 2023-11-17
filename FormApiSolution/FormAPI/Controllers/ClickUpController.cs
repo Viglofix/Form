@@ -69,7 +69,7 @@ namespace FormAPI.Controllers
 
         [AllowAnonymous]
         [HttpPost("CreateUser")]
-        public async Task<IActionResult> CreateUser(ClickUpRequiredDataModel clickUp) 
+        public async Task<IActionResult> CreateUser([FromForm] ClickUpRequiredDataModelRequest clickUp) 
         {
             var obj = _clickUpService.CreateUser(clickUp);
             if(obj is null)

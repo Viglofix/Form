@@ -25,7 +25,8 @@ public class FormDbContext : DbContext
         modelBuilder.Entity<AdminPanel>()
             .HasKey(x => x.Id_Admin);
         modelBuilder.Entity<DropFilesModel>()
-            .HasKey(x => x.Id_File); 
+            .HasKey(x => x.Id_File);
+
         /* Start Primary Keys
         modelBuilder.Entity<SpecializationModel>()
             .HasKey(x => x.Id_Specialization);
@@ -41,7 +42,7 @@ public class FormDbContext : DbContext
             .Property(x => x.Id)
             .HasColumnName("id")
             .HasColumnType("BIGINT")
-            .UseIdentityAlwaysColumn()
+            .UseIdentityByDefaultColumn()
             .HasIdentityOptions(startValue: 1)
             .IsRequired();
         modelBuilder.Entity<ClickUpRequiredDataModel>()
@@ -139,7 +140,7 @@ public class FormDbContext : DbContext
             .HasDefaultValue(null)
             .IsRequired(false);
         modelBuilder.Entity<ClickUpRequiredDataModel>()
-            .Ignore(x => x.formFile);
+            .Ignore(x => x.FormFile);
 
         /* Foreign Keys
   modelBuilder.Entity<ClickUpRequiredDataModel>()

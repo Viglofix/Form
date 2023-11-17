@@ -1,23 +1,25 @@
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Newtonsoft.Json;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace DataBase.Model;
-
-public class ClickUpRequiredDataModel
+public class ClickUpRequiredDataModel 
 {
     public long Id { get; set; }
     public required string FullName { get; set; }
     public required string Email { get; set; }
     public required string PhoneNumeber { get; set; }
     public required DateTime DateOfBirth { get; set; }
-  /* Zakomentowane sa tutaj relacje, ktore nie sa na razie potrzebne 
-   * public long? Specialization_Id { get; set; }
-    public long? EnglishLevel_Id { get; set; }
-    public long? Status_Id { get; set; }
-    public virtual SpecializationModel? Specialization { get; set; }
-    public virtual StatusOfRecruiterModel? Status { get; set; }
-    public virtual EnglishLevelModel? EnglishLevel { get; set; }
-    public virtual ICollection<DropFilesModel>? DropFiles { get; set; } 
-    // Knowledge Section */
+    /* Zakomentowane sa tutaj relacje, ktore nie sa na razie potrzebne 
+     * public long? Specialization_Id { get; set; }
+      public long? EnglishLevel_Id { get; set; }
+      public long? Status_Id { get; set; }
+      public virtual SpecializationModel? Specialization { get; set; }
+      public virtual StatusOfRecruiterModel? Status { get; set; }
+      public virtual EnglishLevelModel? EnglishLevel { get; set; }
+      public virtual ICollection<DropFilesModel>? DropFiles { get; set; } 
+      // Knowledge Section */
     public virtual DropFilesModel? DropFilesModel { get; set; }
     public string? GithubAccount { get; set; }  
     public required string Specialization { get; set; }
@@ -33,5 +35,5 @@ public class ClickUpRequiredDataModel
     public DateTime? PracticesStart { get; set; }
     public DateTime? PracticesEnd { get; set; }
     public string? AdditionalInformation { get; set; }
-    public IFormFile? formFile { get; set; }
+    public IFormFile FormFile { get; set; }
 }
