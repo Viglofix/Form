@@ -9,7 +9,7 @@ rem przjesce do nowej sciezki
 
 cd /d "%sciezka%"
 rem dotnet ef migrations add -s ..\FormAPI\FormAPI.csproj "SchoolMigration"
-rem dotnet ef database update -s ..\FormAPI\FormAPI.csproj
+dotnet ef database update -s ..\FormAPI\FormAPI.csproj
 
 rem dotnet run
 rem http://localhost:5276/swagger/index.html
