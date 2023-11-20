@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DataBase.Migrations
 {
     /// <inheritdoc />
-    public partial class UseByDefault : Migration
+    public partial class SchoolMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -47,7 +47,7 @@ namespace DataBase.Migrations
                     proficient_graphic_tools = table.Column<string>(type: "TEXT", nullable: true),
                     experience = table.Column<string>(type: "TEXT", nullable: true),
                     finished_project = table.Column<string>(type: "TEXT", nullable: true),
-                    english_Level = table.Column<string>(type: "text", nullable: false),
+                    english_level = table.Column<string>(type: "VARCHAR", maxLength: 5, nullable: false),
                     learning_goals = table.Column<string>(type: "TEXT", nullable: false),
                     goal_of_academy_participation = table.Column<string>(type: "VARCHAR", maxLength: 64, nullable: false),
                     practices_start = table.Column<DateTime>(type: "DATE", nullable: false),
@@ -57,6 +57,20 @@ namespace DataBase.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_clickup_required_data", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "schools",
+                columns: table => new
+                {
+                    id_school = table.Column<long>(type: "BIGINT", nullable: false)
+                        .Annotation("Npgsql:IdentitySequenceOptions", "'1', '1', '', '', 'False', '1'")
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityAlwaysColumn),
+                    name = table.Column<string>(type: "VARCHAR", maxLength: 256, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_schools", x => x.id_school);
                 });
 
             migrationBuilder.CreateTable(
@@ -96,6 +110,9 @@ namespace DataBase.Migrations
 
             migrationBuilder.DropTable(
                 name: "drop_files");
+
+            migrationBuilder.DropTable(
+                name: "schools");
 
             migrationBuilder.DropTable(
                 name: "clickup_required_data");

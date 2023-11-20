@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DataBase.Migrations
 {
     [DbContext(typeof(FormDbContext))]
-    [Migration("20231118151421_virtualMigrations")]
-    partial class virtualMigrations
+    [Migration("20231120102919_SchoolMigration")]
+    partial class SchoolMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -194,6 +194,27 @@ namespace DataBase.Migrations
                         .IsUnique();
 
                     b.ToTable("drop_files");
+                });
+
+            modelBuilder.Entity("DataBase.Model.School", b =>
+                {
+                    b.Property<long>("Id_School")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("BIGINT")
+                        .HasColumnName("id_school");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityAlwaysColumn(b.Property<long>("Id_School"));
+                    NpgsqlPropertyBuilderExtensions.HasIdentityOptions(b.Property<long>("Id_School"), 1L, null, null, null, null, null);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("VARCHAR")
+                        .HasColumnName("name");
+
+                    b.HasKey("Id_School");
+
+                    b.ToTable("schools");
                 });
 
             modelBuilder.Entity("DataBase.Model.DropFilesModel", b =>

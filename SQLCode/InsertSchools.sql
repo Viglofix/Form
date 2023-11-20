@@ -1,0 +1,6 @@
+INSERT INTO schools(name) VALUES('ZST RZESZOW'),
+('ZST JASLO'),
+('POLITECHNIKA RZESZOW'),
+('UNIWERSYTET JASLO')
+
+/*\i // */
