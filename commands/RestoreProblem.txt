@@ -1,0 +1,6 @@
+dotnet tool restore — Instaluje narzędzia lokalne platformy .NET, które znajdują się w zakresie bieżącego katalogu
+
+Przykład
+dotnet tool restore
+
+Przywraca narzędzia lokalne dla bieżącego katalogu.

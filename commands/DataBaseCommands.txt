@@ -1,8 +1,8 @@
 DATABASE COMMANDS TO PROJECT:
 -- CREATE USER FormProjectAdmin
--- ALTER ROLE FormProjectAdmin WITH PASSWORD 'F@$mPr12ject';
+-- ALTER ROLE FormProjectAdmin WITH PASSWORD 'F@$mPr12ject'
 -- ALTER ROLE formprojectadmin SUPERUSER CREATEDB CREATEROLE REPLICATION BYPASSRLS;
--- du+
+-- \du+
 
 MIGRATIONS DOTNET CLI (dotnet ef tool)
 -- Form\FormApiSolution\DataBase> dotnet ef database update -s '..\FormAPI\FormAPI.csproj'
