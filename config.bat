@@ -15,7 +15,7 @@ cd /d "%sciezka%"
 rem dotnet ef migrations add -s ..\FormAPI\FormAPI.csproj "SchoolMigration"
 dotnet ef database update -s ..\FormAPI\FormAPI.csproj
 
-dotnet run
+rem dotnet run
 rem http://localhost:5276/swagger/index.html
 
 echo Aktualna sciezka: %sciezka%

@@ -10172,19 +10172,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Vig\\.nuget\\packages\\": {}
+    "C:\\Users\\vig\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Form\\FormApiSolution\\FormAPI\\FormAPI.csproj",
+      "projectUniqueName": "B:\\Form\\FormApiSolution\\FormAPI\\FormAPI.csproj",
       "projectName": "FormAPI",
-      "projectPath": "D:\\Form\\FormApiSolution\\FormAPI\\FormAPI.csproj",
-      "packagesPath": "C:\\Users\\Vig\\.nuget\\packages\\",
-      "outputPath": "D:\\Form\\FormApiSolution\\FormAPI\\obj\\",
+      "projectPath": "B:\\Form\\FormApiSolution\\FormAPI\\FormAPI.csproj",
+      "packagesPath": "C:\\Users\\vig\\.nuget\\packages\\",
+      "outputPath": "B:\\Form\\FormApiSolution\\FormAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Vig\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\vig\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -10198,11 +10198,11 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "D:\\Form\\FormApiSolution\\DataBase\\DataBase.csproj": {
-              "projectPath": "D:\\Form\\FormApiSolution\\DataBase\\DataBase.csproj"
+            "B:\\Form\\FormApiSolution\\DataBase\\DataBase.csproj": {
+              "projectPath": "B:\\Form\\FormApiSolution\\DataBase\\DataBase.csproj"
             },
-            "D:\\Form\\FormApiSolution\\Services\\Services.csproj": {
-              "projectPath": "D:\\Form\\FormApiSolution\\Services\\Services.csproj"
+            "B:\\Form\\FormApiSolution\\Services\\Services.csproj": {
+              "projectPath": "B:\\Form\\FormApiSolution\\Services\\Services.csproj"
             }
           }
         }
@@ -10255,7 +10255,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   }

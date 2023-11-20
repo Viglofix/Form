@@ -214,6 +214,58 @@ namespace DataBase.Migrations
                     b.ToTable("schools");
                 });
 
+            modelBuilder.Entity("DataBase.Model.Test", b =>
+                {
+                    b.Property<long>("Id_Test")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("BIGINT")
+                        .HasColumnName("id_test");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id_Test"));
+                    NpgsqlPropertyBuilderExtensions.HasIdentityOptions(b.Property<long>("Id_Test"), 1L, null, null, null, null, null);
+
+                    b.Property<string>("CorrectAnswer")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("description");
+
+                    b.Property<string>("Question")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("VARCHAR")
+                        .HasColumnName("question");
+
+                    b.HasKey("Id_Test");
+
+                    b.ToTable("tests");
+                });
+
+            modelBuilder.Entity("DataBase.Model.TestAnswer", b =>
+                {
+                    b.Property<long>("Id_TestAnswer")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("BIGINT")
+                        .HasColumnName("id_test_answer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id_TestAnswer"));
+                    NpgsqlPropertyBuilderExtensions.HasIdentityOptions(b.Property<long>("Id_TestAnswer"), 1L, null, null, null, null, null);
+
+                    b.Property<string>("Answer")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("answer");
+
+                    b.Property<long>("Test_Id")
+                        .HasColumnType("BIGINT")
+                        .HasColumnName("test_id");
+
+                    b.HasKey("Id_TestAnswer");
+
+                    b.HasIndex("Test_Id");
+
+                    b.ToTable("test_answers");
+                });
+
             modelBuilder.Entity("DataBase.Model.DropFilesModel", b =>
                 {
                     b.HasOne("DataBase.Model.ClickUpRequiredDataModel", "clickUpRequiredDataModel")
@@ -223,9 +275,25 @@ namespace DataBase.Migrations
                     b.Navigation("clickUpRequiredDataModel");
                 });
 
+            modelBuilder.Entity("DataBase.Model.TestAnswer", b =>
+                {
+                    b.HasOne("DataBase.Model.Test", "Test")
+                        .WithMany("Answers")
+                        .HasForeignKey("Test_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Test");
+                });
+
             modelBuilder.Entity("DataBase.Model.ClickUpRequiredDataModel", b =>
                 {
                     b.Navigation("DropFilesModel");
+                });
+
+            modelBuilder.Entity("DataBase.Model.Test", b =>
+                {
+                    b.Navigation("Answers");
                 });
 #pragma warning restore 612, 618
         }

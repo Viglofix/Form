@@ -18,6 +18,8 @@ public class FormDbContext : DbContext
     public virtual DbSet<DropFilesModel> drop_files { get; set; }
     public virtual DbSet<AdminPanel> admin_panel { get; set; }
     public virtual DbSet<School> schools {get;set;}
+    public virtual DbSet<Test> tests { get; set; }
+    public virtual DbSet<TestAnswer> test_answers { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -29,6 +31,10 @@ public class FormDbContext : DbContext
             .HasKey(x => x.Id_File);
         modelBuilder.Entity<School>()
             .HasKey(x=>x.Id_School);
+        modelBuilder.Entity<Test>()
+            .HasKey(x => x.Id_Test);
+        modelBuilder.Entity<TestAnswer>()
+            .HasKey(x => x.Id_TestAnswer);
 
         /* Start Primary Keys
         modelBuilder.Entity<SpecializationModel>()
@@ -330,8 +336,43 @@ public class FormDbContext : DbContext
             .HasDefaultValue(null)
             .HasMaxLength(256)
             .IsRequired();
+        // Tests
+        modelBuilder.Entity<Test>()
+            .Property(x => x.Id_Test)
+            .HasColumnName("id_test")
+            .HasColumnType("BIGINT")
+            .UseIdentityByDefaultColumn()
+            .HasIdentityOptions(startValue: 1)
+            .IsRequired();
+        modelBuilder.Entity<Test>()
+            .Property(x=>x.Question)
+            .HasColumnName("question")
+            .HasColumnType("VARCHAR")
+            .HasMaxLength(64)
+            .IsRequired();
+        modelBuilder.Entity<Test>()
+            .Property(x => x.CorrectAnswer)
+            .HasColumnName("description")
+            .HasColumnType("TEXT")
+            .IsRequired();
 
-
+        // TestQuestion Table
+        modelBuilder.Entity<TestAnswer>()
+            .Property(x=>x.Id_TestAnswer)
+            .HasColumnName("id_test_answer")
+            .HasColumnType("BIGINT")
+            .UseIdentityByDefaultColumn()
+            .HasIdentityOptions(startValue: 1)
+            .IsRequired();
+        modelBuilder.Entity<TestAnswer>()
+            .Property(x=>x.Answer)
+            .HasColumnName("answer")
+            .HasColumnType("TEXT")
+            .IsRequired();
+        modelBuilder.Entity<TestAnswer>()
+            .Property(x => x.Test_Id)
+            .HasColumnName("test_id")
+            .HasColumnType("BIGINT");
         // RelationShips
         /*
         modelBuilder.Entity<ClickUpRequiredDataModel>()
@@ -354,10 +395,18 @@ public class FormDbContext : DbContext
             .HasOne<ClickUpRequiredDataModel>(x => x.clickUpRequiredDataModel)
             .WithMany(x => x.DropFiles)
             .HasForeignKey(x => x.ClickUp_Id); */
+
+        // Files Relationship
         modelBuilder.Entity<ClickUpRequiredDataModel>()
             .HasOne(x => x.DropFilesModel)
             .WithOne(x => x.clickUpRequiredDataModel)
             .HasForeignKey<DropFilesModel>(x => x.ClickUp_Id);
+
+        // Test Relationship
+        modelBuilder.Entity<TestAnswer>()
+            .HasOne<Test>(x => x.Test)
+            .WithMany(x => x.Answers)
+            .HasForeignKey(x => x.Test_Id);
 
         base.OnModelCreating(modelBuilder);
     }

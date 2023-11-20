@@ -33,28 +33,28 @@ namespace FormAPI.Controllers
             _configuration = configuration;
         }
 
-      /*  [AllowAnonymous]
-        [HttpGet("GetAllSpecializations")]
-        public async Task<IActionResult> GetAllSpecializations()
-        {
-            var specObj = _clickUpService.GetAllSpecialization();
-            if(specObj is null)
-            {
-                return NotFound();
-            }
-            return Ok(await specObj);
-        }
-        [AllowAnonymous]
-        [HttpGet("GetAllEnglishLevels")]
-        public async Task<IActionResult> GetAllEnglishLevels()
-        {
-            var englishObj = _clickUpService.GetAllEnglishLevel();
-            if(englishObj is null)
-            {
-                return NotFound();
-            }
-            return Ok(await englishObj);
-        } */
+        /*  [AllowAnonymous]
+          [HttpGet("GetAllSpecializations")]
+          public async Task<IActionResult> GetAllSpecializations()
+          {
+              var specObj = _clickUpService.GetAllSpecialization();
+              if(specObj is null)
+              {
+                  return NotFound();
+              }
+              return Ok(await specObj);
+          }
+          [AllowAnonymous]
+          [HttpGet("GetAllEnglishLevels")]
+          public async Task<IActionResult> GetAllEnglishLevels()
+          {
+              var englishObj = _clickUpService.GetAllEnglishLevel();
+              if(englishObj is null)
+              {
+                  return NotFound();
+              }
+              return Ok(await englishObj);
+          } */
         [AllowAnonymous]
         [HttpPost("CreateDropFile")]
         public async Task<IActionResult> CreateDropFile(List<IFormFile> files)
@@ -85,7 +85,7 @@ namespace FormAPI.Controllers
             {
                 return NotFound();
             }
-            return Ok(await obj);
+            return Created("",await obj);
         }
     }
 }
