@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore.Migrations.Operations;
 using Services.Container;
+using FluentValidation;
 
 namespace Services.Container;
 
@@ -56,6 +57,13 @@ public class ClickUpService : IClickUpService
                 throw new Exception("model not found");
             }
 
+            Validation validation = new();
+            var validationResult = await validation.ValidateAsync(model);
+            if(!validationResult.IsValid)
+            {
+                throw new Exception("validation is false");
+            }
+           
             /* long? seq = null;
             long? seqFile = null;
             using (var connection = new NpgsqlConnection(_configuration.GetConnectionString("FormDb")))
@@ -88,7 +96,7 @@ public class ClickUpService : IClickUpService
                 Id = seq,
                 FullName = model.FullName,
                 Email = model.Email,
-                PhoneNumeber = model.PhoneNumeber,
+                PhoneNumber = model.PhoneNumber,
                 DateOfBirth = model.DateOfBirth,
                 Specialization = model.Specialization,
                 NameOfUniversityOrOccupation = model.NameOfUniversityOrOccupation,
@@ -96,9 +104,9 @@ public class ClickUpService : IClickUpService
                 ProgrammingLangugages = model.ProgrammingLangugages,
                 GraphicInspitation = model.GraphicInspitation,
                 ProficientGraphicTools = model.ProficientGraphicTools,
-                Experience = model.english_Level,
+                Experience = model.Experience,
                 FinishedProject = model.FinishedProject,
-                english_Level = model.english_Level,
+                English_Level = model.English_Level,
                 LearningGoals = model.LearningGoals,
                 GoalOfAcademyParticipation = model.GoalOfAcademyParticipation,
                 PracticesStart = model.PracticesStart,
@@ -107,32 +115,32 @@ public class ClickUpService : IClickUpService
                 DropFilesModel = service.DownloadSingleFile(model.FormFile!,seq)
             };
 
-           /* ClickUpRequiredDataModel obj = new()
-            {
-                FullName = model.FullName,
-                Email = model.Email,
-                PhoneNumeber = model.PhoneNumeber,
-                DateOfBirth = model.DateOfBirth,
-                Specialization_Id = model.Specialization_Id,
-                Status_Id = seq!.Value,// Tutaj front musi wyslac liczbe id jeden czy cos, zeby w UI przeksztalci sie na .net czy tam react
-                Status = new StatusOfRecruiterModel()
-                {
-                    Id_StatusOfRecruiter = seq!.Value, // --- Nadpisujemy wartosc z requesta powyzej, wiec sekwencja przy tworzeniu statusu nie jest wykorzystywana
-                    NameOfTheUniversity = model.Status.NameOfTheUniversity,
-                    StartDateOfPractice = model.Status.StartDateOfPractice,
-                    EndDateOfPractice = model.Status.EndDateOfPractice,
-                    TypeOfPracticeModel_Id = model.Status.TypeOfPracticeModel_Id
-                },
-                EnglishLevel_Id = model.EnglishLevel_Id,
-                    GithubAccount = model.GithubAccount,
-                    ProgrammingKnowledge = model.ProgrammingKnowledge,
-                    GraphicInspitation = model.GraphicInspitation,
-                    GraphicProgram = model.GraphicProgram,
-                    Experience = model.Experience,
-                    FinishedProject = model.FinishedProject,
-                    Expectation = model.Expectation,
-                    AdditionalInformation = model.AdditionalInformation
-                }; */
+            /* ClickUpRequiredDataModel obj = new()
+             {
+                 FullName = model.FullName,
+                 Email = model.Email,
+                 PhoneNumeber = model.PhoneNumeber,
+                 DateOfBirth = model.DateOfBirth,
+                 Specialization_Id = model.Specialization_Id,
+                 Status_Id = seq!.Value,// Tutaj front musi wyslac liczbe id jeden czy cos, zeby w UI przeksztalci sie na .net czy tam react
+                 Status = new StatusOfRecruiterModel()
+                 {
+                     Id_StatusOfRecruiter = seq!.Value, // --- Nadpisujemy wartosc z requesta powyzej, wiec sekwencja przy tworzeniu statusu nie jest wykorzystywana
+                     NameOfTheUniversity = model.Status.NameOfTheUniversity,
+                     StartDateOfPractice = model.Status.StartDateOfPractice,
+                     EndDateOfPractice = model.Status.EndDateOfPractice,
+                     TypeOfPracticeModel_Id = model.Status.TypeOfPracticeModel_Id
+                 },
+                 EnglishLevel_Id = model.EnglishLevel_Id,
+                     GithubAccount = model.GithubAccount,
+                     ProgrammingKnowledge = model.ProgrammingKnowledge,
+                     GraphicInspitation = model.GraphicInspitation,
+                     GraphicProgram = model.GraphicProgram,
+                     Experience = model.Experience,
+                     FinishedProject = model.FinishedProject,
+                     Expectation = model.Expectation,
+                     AdditionalInformation = model.AdditionalInformation
+                 }; */
 
             await _formDbContext.clickup_required_data.AddAsync(obj);
             await _formDbContext.SaveChangesAsync();
@@ -147,6 +155,11 @@ public class ClickUpService : IClickUpService
             return _response;
         }
         return _response;
+    }
+
+    public async Task<List<School>> GetAllSchools(){
+        var schoolObj = await _formDbContext.schools.ToListAsync();
+        return schoolObj;
     }
 
     /* public async Task<List<EnglishLevelModel>> GetAllEnglishLevel()

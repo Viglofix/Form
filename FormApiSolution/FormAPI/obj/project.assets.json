@@ -2,6 +2,19 @@
   "version": 3,
   "targets": {
     "net7.0": {
+      "FluentValidation/11.8.0": {
+        "type": "package",
+        "compile": {
+          "lib/net7.0/FluentValidation.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/FluentValidation.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Humanizer.Core/2.14.1": {
         "type": "package",
         "compile": {
@@ -3725,6 +3738,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "DataBase": "1.0.0",
+          "FluentValidation": "11.8.0",
           "Microsoft.AspNetCore": "2.2.0",
           "Microsoft.AspNetCore.OpenApi": "7.0.13"
         },
@@ -3738,6 +3752,29 @@
     }
   },
   "libraries": {
+    "FluentValidation/11.8.0": {
+      "sha512": "TiEaaYqSIAS+wXQv46LRm8Mca092XYNePD0n231Hqlkmm5FuToZoWnjI1ef/vJUxBzqR7/k2vaVQXxijNgVKRQ==",
+      "type": "package",
+      "path": "fluentvalidation/11.8.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "fluent-validation-icon.png",
+        "fluentvalidation.11.8.0.nupkg.sha512",
+        "fluentvalidation.nuspec",
+        "lib/net5.0/FluentValidation.dll",
+        "lib/net5.0/FluentValidation.xml",
+        "lib/net6.0/FluentValidation.dll",
+        "lib/net6.0/FluentValidation.xml",
+        "lib/net7.0/FluentValidation.dll",
+        "lib/net7.0/FluentValidation.xml",
+        "lib/netstandard2.0/FluentValidation.dll",
+        "lib/netstandard2.0/FluentValidation.xml",
+        "lib/netstandard2.1/FluentValidation.dll",
+        "lib/netstandard2.1/FluentValidation.xml"
+      ]
+    },
     "Humanizer.Core/2.14.1": {
       "sha512": "lQKvtaTDOXnoVJ20ibTuSIOf2i0uO0MPbDhd1jm238I+U/2ZnRENj0cktKZhtchBMtCUSRQ5v4xBCUbKNmyVMw==",
       "type": "package",
@@ -10135,19 +10172,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\vig\\.nuget\\packages\\": {}
+    "C:\\Users\\Vig\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "B:\\Form\\FormApiSolution\\FormAPI\\FormAPI.csproj",
+      "projectUniqueName": "D:\\Form\\FormApiSolution\\FormAPI\\FormAPI.csproj",
       "projectName": "FormAPI",
-      "projectPath": "B:\\Form\\FormApiSolution\\FormAPI\\FormAPI.csproj",
-      "packagesPath": "C:\\Users\\vig\\.nuget\\packages\\",
-      "outputPath": "B:\\Form\\FormApiSolution\\FormAPI\\obj\\",
+      "projectPath": "D:\\Form\\FormApiSolution\\FormAPI\\FormAPI.csproj",
+      "packagesPath": "C:\\Users\\Vig\\.nuget\\packages\\",
+      "outputPath": "D:\\Form\\FormApiSolution\\FormAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\vig\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Vig\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -10161,11 +10198,11 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "B:\\Form\\FormApiSolution\\DataBase\\DataBase.csproj": {
-              "projectPath": "B:\\Form\\FormApiSolution\\DataBase\\DataBase.csproj"
+            "D:\\Form\\FormApiSolution\\DataBase\\DataBase.csproj": {
+              "projectPath": "D:\\Form\\FormApiSolution\\DataBase\\DataBase.csproj"
             },
-            "B:\\Form\\FormApiSolution\\Services\\Services.csproj": {
-              "projectPath": "B:\\Form\\FormApiSolution\\Services\\Services.csproj"
+            "D:\\Form\\FormApiSolution\\Services\\Services.csproj": {
+              "projectPath": "D:\\Form\\FormApiSolution\\Services\\Services.csproj"
             }
           }
         }
@@ -10218,7 +10255,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }

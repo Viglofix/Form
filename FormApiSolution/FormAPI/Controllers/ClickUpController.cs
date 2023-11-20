@@ -66,6 +66,15 @@ namespace FormAPI.Controllers
             }
             return Ok(await obj);
         }
+        [AllowAnonymous]
+        [HttpGet("GetAllSchools")]
+        public async Task<IActionResult> GetAllSchools(){
+            var obj = _clickUpService.GetAllSchools();
+            if(obj is null) {
+                return NotFound();
+            }
+            return Ok(await obj);
+        }
 
         [AllowAnonymous]
         [HttpPost("CreateUser")]

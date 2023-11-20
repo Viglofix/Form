@@ -79,6 +79,12 @@ namespace DataBase.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnName("email");
 
+                    b.Property<string>("English_Level")
+                        .IsRequired()
+                        .HasMaxLength(5)
+                        .HasColumnType("VARCHAR")
+                        .HasColumnName("english_level");
+
                     b.Property<string>("Experience")
                         .HasColumnType("TEXT")
                         .HasColumnName("experience");
@@ -116,7 +122,7 @@ namespace DataBase.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("PhoneNumeber")
+                    b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasColumnName("phone_number");
@@ -141,10 +147,6 @@ namespace DataBase.Migrations
                         .HasColumnName("programming_languages");
 
                     b.Property<string>("Specialization")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("english_Level")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -189,6 +191,27 @@ namespace DataBase.Migrations
                         .IsUnique();
 
                     b.ToTable("drop_files");
+                });
+
+            modelBuilder.Entity("DataBase.Model.School", b =>
+                {
+                    b.Property<long>("Id_School")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("BIGINT")
+                        .HasColumnName("id_school");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityAlwaysColumn(b.Property<long>("Id_School"));
+                    NpgsqlPropertyBuilderExtensions.HasIdentityOptions(b.Property<long>("Id_School"), 1L, null, null, null, null, null);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("VARCHAR")
+                        .HasColumnName("name");
+
+                    b.HasKey("Id_School");
+
+                    b.ToTable("schools");
                 });
 
             modelBuilder.Entity("DataBase.Model.DropFilesModel", b =>

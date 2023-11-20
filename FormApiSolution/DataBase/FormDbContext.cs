@@ -17,6 +17,7 @@ public class FormDbContext : DbContext
    // public virtual DbSet<EnglishLevelModel> english_level { get; set; }
     public virtual DbSet<DropFilesModel> drop_files { get; set; }
     public virtual DbSet<AdminPanel> admin_panel { get; set; }
+    public virtual DbSet<School> schools {get;set;}
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -26,6 +27,8 @@ public class FormDbContext : DbContext
             .HasKey(x => x.Id_Admin);
         modelBuilder.Entity<DropFilesModel>()
             .HasKey(x => x.Id_File);
+        modelBuilder.Entity<School>()
+            .HasKey(x=>x.Id_School);
 
         /* Start Primary Keys
         modelBuilder.Entity<SpecializationModel>()
@@ -59,7 +62,7 @@ public class FormDbContext : DbContext
             .HasDefaultValue(null)
             .IsRequired();
         modelBuilder.Entity<ClickUpRequiredDataModel>()
-            .Property(x => x.PhoneNumeber)
+            .Property(x => x.PhoneNumber)
             .HasColumnName("phone_number")
             .HasColumnType("TEXT")
             .HasDefaultValue(null)
@@ -108,6 +111,13 @@ public class FormDbContext : DbContext
             .HasColumnType("TEXT")
             .HasDefaultValue(null)
             .IsRequired(false);
+        modelBuilder.Entity<ClickUpRequiredDataModel>()
+            .Property(x => x.English_Level)
+            .HasColumnName("english_level")
+            .HasColumnType("VARCHAR")
+            .HasMaxLength(5)
+            .HasDefaultValue(null)
+            .IsRequired();
        modelBuilder.Entity<ClickUpRequiredDataModel>()
            .Property(x => x.LearningGoals)
            .HasColumnName("learning_goals")
@@ -303,6 +313,22 @@ public class FormDbContext : DbContext
             .HasColumnType("VARCHAR")
             .HasDefaultValue(null)
             .HasMaxLength(64)
+            .IsRequired();
+
+        // School
+        modelBuilder.Entity<School>()
+            .Property(x=>x.Id_School)
+            .HasColumnName("id_school")
+            .HasColumnType("BIGINT")
+            .UseIdentityAlwaysColumn()
+            .HasIdentityOptions(startValue: 1)
+            .IsRequired();
+        modelBuilder.Entity<School>()
+            .Property(x=>x.Name)
+            .HasColumnName("name")
+            .HasColumnType("VARCHAR")
+            .HasDefaultValue(null)
+            .HasMaxLength(256)
             .IsRequired();
 
 

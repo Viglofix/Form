@@ -9,7 +9,7 @@ public class ClickUpRequiredDataModel
     public long Id { get; set; }
     public required string FullName { get; set; }
     public required string Email { get; set; }
-    public required string PhoneNumeber { get; set; }
+    public required string PhoneNumber { get; set; }
     public required DateTime DateOfBirth { get; set; }
     /* Zakomentowane sa tutaj relacje, ktore nie sa na razie potrzebne 
      * public long? Specialization_Id { get; set; }
@@ -29,7 +29,7 @@ public class ClickUpRequiredDataModel
     public string? ProficientGraphicTools { get; set; }
     public string? Experience { get; set; }
     public string? FinishedProject { get; set; }
-    public required string english_Level { get; set; }
+    public required string English_Level { get; set; }
     public required string LearningGoals { get; set; }
     public required string GoalOfAcademyParticipation { get; set; }
     public DateTime? PracticesStart { get; set; }

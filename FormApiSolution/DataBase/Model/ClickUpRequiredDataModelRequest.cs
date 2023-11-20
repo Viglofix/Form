@@ -6,7 +6,7 @@ namespace DataBase.Model;
     {
     public required string FullName { get; set; }
     public required string Email { get; set; }
-    public required string PhoneNumeber { get; set; }
+    public required string PhoneNumber { get; set; }
     public required DateTime DateOfBirth { get; set; }
     public string? GithubAccount { get; set; }
     public required string Specialization { get; set; }
@@ -16,7 +16,7 @@ namespace DataBase.Model;
     public string? ProficientGraphicTools { get; set; }
     public string? Experience { get; set; }
     public string? FinishedProject { get; set; }
-    public required string english_Level { get; set; }
+    public required string English_Level { get; set; }
     public required string LearningGoals { get; set; }
     public required string GoalOfAcademyParticipation { get; set; }
     public DateTime? PracticesStart { get; set; }
