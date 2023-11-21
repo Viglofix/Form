@@ -159,6 +159,11 @@ public class ClickUpService : IClickUpService
     }
 
     public async Task<List<School>> GetAllSchools(){
+        if(_formDbContext is null || !_formDbContext.schools.Any())
+        {
+            await _formDbContext!.schools.AddRangeAsync(new InsertSchool().GetSchools());
+            await _formDbContext!.SaveChangesAsync();
+        }
         var schoolObj = await _formDbContext.schools.ToListAsync();
         return schoolObj;
     }

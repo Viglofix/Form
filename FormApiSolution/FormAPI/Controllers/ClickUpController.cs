@@ -75,7 +75,6 @@ namespace FormAPI.Controllers
             }
             return Ok(await obj);
         }
-
         [AllowAnonymous]
         [HttpPost("CreateUser")]
         public async Task<IActionResult> CreateUser([FromForm] ClickUpRequiredDataModelRequest clickUp) 
