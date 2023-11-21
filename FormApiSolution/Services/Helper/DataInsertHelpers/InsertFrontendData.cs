@@ -86,7 +86,109 @@ public class InsertFrontendData
                         Answer = "ES13"
                     }
                 }
-            }
+            },
+            new Test()
+            {
+                Question = "Which of the following CSS selectors targets all <p> elements that are direct children of a <div> element?",
+                CorrectAnswer = "div > p",
+                Answers = new List<TestAnswer>
+                {
+                    new TestAnswer
+                    {
+                        Answer = "div ~ p"
+                    },
+                    new TestAnswer
+                    {
+                        Answer = "div + p"
+                    },
+                    new TestAnswer
+                    {
+                        Answer = "div p"
+                    }
+                }
+             },
+             new Test()
+             { 
+                Question = "What is the purpose of the async and await keywords in C#?",
+                CorrectAnswer = "To define asynchronous methods and wait for their completion.",
+                Answers = new List<TestAnswer>
+                {
+                    new TestAnswer
+                    {
+                        Answer = "To indicate that a method is static."
+                    },
+                    new TestAnswer
+                    {
+                        Answer = "To define a class as abstract."
+                    },
+                    new TestAnswer
+                    {
+                        Answer = "To mark a method as deprecated."
+                    }
+                }
+             },
+            new Test()
+            {
+                Question = "What is the primary purpose of the try, catch, and finally blocks in C#?",
+                CorrectAnswer = "To handle exceptions in code.",
+                Answers = new List<TestAnswer>
+                {
+                    new TestAnswer
+                    {
+                        Answer = "To define loop constructs.."
+                    },
+                    new TestAnswer
+                    {
+                        Answer = "To declare variables."
+                    },
+                    new TestAnswer
+                    {
+                        Answer = "To define conditional statements."
+                    }
+                }
+            },
+            new Test()
+            {
+                Question = "How does Dependency Injection benefit software architecture in .NET applications?",
+                CorrectAnswer = "It enhances testability and maintainability.",
+                Answers = new List<TestAnswer>
+                {
+                    new TestAnswer
+                    {
+                        Answer = "It improves code readability.."
+                    },
+                    new TestAnswer
+                    {
+                        Answer = "It reduces code duplication.."
+                    },
+                    new TestAnswer
+                    {
+                        Answer = "It eliminates the need for exception handling."
+                    }
+                }
+            },
+            new Test()
+            {
+                Question = "What is the role of the using statement in C# when dealing with IDisposable objects?\r\n",
+                CorrectAnswer = " To automatically release resources when they are no longer needed.",
+                Answers = new List<TestAnswer>
+                {
+                    new TestAnswer
+                    {
+                        Answer = " To include namespaces."
+                    },
+                    new TestAnswer
+                    {
+                        Answer = "To define variable types."
+                    },
+                    new TestAnswer
+                    {
+                        Answer = "To create instances of classes."
+                    }
+                }
+            },
+
+
         };
     }
 }

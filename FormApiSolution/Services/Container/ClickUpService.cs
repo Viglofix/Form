@@ -6,7 +6,6 @@ using Services.Helper;
 using Services.Service;
 using Npgsql;
 using Microsoft.Extensions.Configuration;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Services.Helper.DataInsertHelpers;
 using Microsoft.EntityFrameworkCore.Migrations.Operations;
@@ -87,7 +86,7 @@ public class ClickUpService : IClickUpService
                 await connection.OpenAsync();
                 using(var command = new NpgsqlCommand(@"SELECT NEXTVAL('""clickup_required_data_id_seq""')",connection))
                 {
-                    seq = (long)command.ExecuteScalar();
+                    seq = (long)command.ExecuteScalar()!;
                 }
                 await connection.CloseAsync();
             }
@@ -162,45 +161,6 @@ public class ClickUpService : IClickUpService
     public async Task<List<School>> GetAllSchools(){
         var schoolObj = await _formDbContext.schools.ToListAsync();
         return schoolObj;
-    }
-
-    public async Task<FrontendData> GetQuestion(int id)
-    {
-        try
-        {
-            if (_formDbContext.tests is null || !_formDbContext.tests.Any())
-            {
-                await _formDbContext.AddRangeAsync(new InsertFrontendData().GetTests());
-                await _formDbContext.SaveChangesAsync();
-            }
-
-            var query = await _formDbContext.tests!
-                 .Include(x => x.Answers)
-                 .FirstOrDefaultAsync(x => x.Id_Test == id);
-
-            List<string> tempList = new();
-            foreach (var item in query!.Answers!)
-            {
-                tempList!.Add(item.Answer!);
-            }
-
-            FrontendData refactoredObj = new()
-            {
-                Question = query.Question,
-                CorrectAnswer = query.CorrectAnswer,
-                Answers = tempList
-            };
-
-            if (refactoredObj is null)
-            {
-                return null!;
-            }
-            return refactoredObj!;
-        }
-        catch(Exception ex)
-        {
-            return null!;
-        }
     }
 
     /* public async Task<List<EnglishLevelModel>> GetAllEnglishLevel()

@@ -227,7 +227,7 @@ namespace DataBase.Migrations
                     b.Property<string>("CorrectAnswer")
                         .IsRequired()
                         .HasColumnType("TEXT")
-                        .HasColumnName("description");
+                        .HasColumnName("correct_answer");
 
                     b.Property<string>("Question")
                         .IsRequired()

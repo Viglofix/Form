@@ -3,5 +3,5 @@
 namespace Services.Service;
     public interface IQuizService
     {
-    public Task<FrontendData> GetQuestion(int id);
+    public Task<List<FrontendData>> GetQuestion(string specialization);
     }

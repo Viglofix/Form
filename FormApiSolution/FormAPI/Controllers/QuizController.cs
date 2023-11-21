@@ -16,10 +16,12 @@ namespace FormAPI.Controllers
     {
         // Dependency Injection Section
         private readonly FormDbContext _dbContext;
+        private readonly IQuizService _quizService;
         private readonly IClickUpService _clickUpService;
         private readonly IConfiguration _configuration;
-        public QuizController(IClickUpService clickUpService, FormDbContext dbContext, IConfiguration configuration)
+        public QuizController(IClickUpService clickUpService, FormDbContext dbContext, IConfiguration configuration,IQuizService quiz)
         {
+            _quizService = quiz;
             _clickUpService = clickUpService;
             _dbContext = dbContext;
             _configuration = configuration;
@@ -27,9 +29,9 @@ namespace FormAPI.Controllers
 
         [AllowAnonymous]
         [HttpGet("GetQuestion")]
-        public async Task<IActionResult> GetQuestion(int id)
+        public async Task<IActionResult> GetQuestion(string specialization)
         {
-            var obj = _clickUpService.GetQuestion(id);
+            var obj = _quizService.GetQuestion(specialization);
             if (obj is null)
             {
                 return NotFound();

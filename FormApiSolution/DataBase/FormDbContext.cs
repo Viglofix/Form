@@ -352,7 +352,7 @@ public class FormDbContext : DbContext
             .IsRequired();
         modelBuilder.Entity<Test>()
             .Property(x => x.CorrectAnswer)
-            .HasColumnName("description")
+            .HasColumnName("correct_answer")
             .HasColumnType("TEXT")
             .IsRequired();
 

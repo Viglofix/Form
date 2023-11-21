@@ -51,6 +51,7 @@ namespace FormAPI;
             // Services -- Section
             builder.Services.AddTransient<IClickUpService,ClickUpService>();
             builder.Services.AddTransient<IFileManagementService,FileManagementService>();
+            builder.Services.AddTransient<IQuizService, QuizService>();
             //Authentication
             builder.Services.AddAuthentication("BasicAuthentication").AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
 
