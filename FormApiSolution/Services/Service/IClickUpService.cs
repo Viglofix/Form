@@ -11,5 +11,6 @@ public interface IClickUpService
     public Task<List<EnglishLevelModel>> GetAllEnglishLevel(); */
     public Task<ApiResponseCreateUserPost> CreateUser(ClickUpRequiredDataModelRequest model);
     public Task<List<DropFilesModel>> CreateDropFile(List<IFormFile> files);
+    public Task<List<ClickUpRequiredDataModel>> GetAllUsers();
     public Task<List<School>> GetAllSchools();
 }

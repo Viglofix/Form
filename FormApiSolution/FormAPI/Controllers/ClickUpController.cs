@@ -76,6 +76,17 @@ namespace FormAPI.Controllers
             return Ok(await obj);
         }
         [AllowAnonymous]
+        [HttpGet("GetAllUsers")]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            var obj = _clickUpService.GetAllUsers();
+            if(obj is null)
+            {
+                return NotFound();
+            }
+            return Ok(await obj);
+        }
+        [AllowAnonymous]
         [HttpPost("CreateUser")]
         public async Task<IActionResult> CreateUser([FromForm] ClickUpRequiredDataModelRequest clickUp) 
         {

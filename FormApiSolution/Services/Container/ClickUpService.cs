@@ -25,7 +25,13 @@ public class ClickUpService : IClickUpService
         _formDbContext = formDbContext;
         _configuration = configuration;
     }
-    
+
+    public async Task<List<ClickUpRequiredDataModel>> GetAllUsers()
+    {
+        var db = await _formDbContext.clickup_required_data.ToListAsync();
+        return db;
+    }
+
     public async Task<List<DropFilesModel>> CreateDropFile(List<IFormFile> files)
     {
             FileManagementService fileManagementService = new(_formDbContext);
