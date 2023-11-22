@@ -6,41 +6,41 @@ namespace Services.Helper;
     {
     public Validation()
     {
-        RuleFor(x => x.FullName)
+        RuleFor(x => x.fullName)
                 .NotEmpty().WithMessage("Pole 'FullName' jest wymagane.");
 
-        RuleFor(x => x.Email)
+        RuleFor(x => x.email)
             .NotEmpty().WithMessage("Pole 'Email' jest wymagane.")
             .EmailAddress().WithMessage("Niepoprawny format adresu email.");
 
-        RuleFor(x => x.PhoneNumber)
+        RuleFor(x => x.phoneNumber)
             .NotEmpty().WithMessage("Pole 'PhoneNumber' jest wymagane.")
             .Matches(@"^\(\+48\) \d{3}-\d{3}-\d{3}$").WithMessage("Niepoprawny format numeru telefonu. Oczekiwany format: (+48) 000-000-000");
 
-        RuleFor(x => x.DateOfBirth)
+        RuleFor(x => x.dateOfBirth)
             .NotEmpty().WithMessage("Pole 'DateOfBirth' jest wymagane.")
             .WithMessage("Niepoprawny format daty urodzenia.");
 
-        RuleFor(x => x.Specialization)
+        RuleFor(x => x.specialization)
             .NotEmpty().WithMessage("Pole 'Specialization' jest wymagane.");
 
-        RuleFor(x => x.NameOfUniversityOrOccupation)
+        RuleFor(x => x.nameOfUniversityOrOccupation)
             .NotEmpty().WithMessage("Pole 'NameOfUniversityOrOccupation' jest wymagane.");
 
-        RuleFor(x => x.English_Level)
+        RuleFor(x => x.english_Level)
             .NotEmpty().WithMessage("Pole 'English_Level' jest wymagane.")
-            .Matches(@"\b(?:B1|B2|C1|C2)\b"); 
+            .Matches(@"\b(?:B1|B2|C1|C2)\b");
 
-        RuleFor(x => x.LearningGoals)
+        RuleFor(x => x.learningGoals)
             .NotEmpty().WithMessage("Pole 'LearningGoals' jest wymagane.");
 
-        RuleFor(x => x.GoalOfAcademyParticipation)
+        RuleFor(x => x.goalOfAcademyParticipation)
             .NotEmpty().WithMessage("Pole 'GoalOfAcademyParticipation' jest wymagane.");
 
-        RuleFor(x => x.PracticesStart)
+        RuleFor(x => x.practicesStart)
             .NotEmpty().WithMessage("Niepoprawny format daty rozpoczęcia praktyk.");
 
-        RuleFor(x => x.PracticesEnd)
+        RuleFor(x => x.practicesEnd)
             .NotEmpty()
             .WithMessage("Niepoprawny format daty zakończenia praktyk.");
     }
