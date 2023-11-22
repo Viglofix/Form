@@ -4,23 +4,23 @@ namespace DataBase.Model;
 
     public class ClickUpRequiredDataModelRequest
     {
-    public required string fullName { get; set; }
-    public required string email { get; set; }
-    public required string phoneNumber { get; set; }
-    public required DateTime dateOfBirth { get; set; }
-    public string? githubAccount { get; set; }
-    public required string specialization { get; set; }
-    public required string nameOfUniversityOrOccupation { get; set; }
-    public string? programmingLangugages { get; set; }
-    public string? graphicInspitation { get; set; }
-    public string? proficientGraphicTools { get; set; }
-    public string? experience { get; set; }
-    public string? finishedProject { get; set; }
-    public required string english_Level { get; set; }
-    public required string learningGoals { get; set; }
-    public required string goalOfAcademyParticipation { get; set; }
-    public DateTime? practicesStart { get; set; }
-    public DateTime? practicesEnd { get; set; }
-    public string? additionalInformation { get; set; }
-    public IFormFile formFile { get; set; }
+    public required string FullName { get; set; }
+    public required string Email { get; set; }
+    public required string PhoneNumber { get; set; }
+    public required DateTime DateOfBirth { get; set; }
+    public string? GithubAccount { get; set; }
+    public required string Specialization { get; set; }
+    public required string NameOfUniversityOrOccupation { get; set; }
+    public string? ProgrammingLangugages { get; set; }
+    public string? GraphicInspitation { get; set; }
+    public string? ProficientGraphicTools { get; set; }
+    public string? Experience { get; set; }
+    public string? FinishedProject { get; set; }
+    public required string English_Level { get; set; }
+    public required string LearningGoals { get; set; }
+    public required string GoalOfAcademyParticipation { get; set; }
+    public DateTime? PracticesStart { get; set; }
+    public DateTime? PracticesEnd { get; set; }
+    public string? AdditionalInformation { get; set; }
+    public IFormFile FormFile { get; set; }
 }
