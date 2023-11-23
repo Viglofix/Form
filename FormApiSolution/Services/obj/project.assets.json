@@ -9650,8 +9650,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "D:\\Form\\FormApiSolution\\DataBase\\DataBase.csproj": {
-              "projectPath": "D:\\Form\\FormApiSolution\\DataBase\\DataBase.csproj"
+            "d:\\Form\\FormApiSolution\\DataBase\\DataBase.csproj": {
+              "projectPath": "d:\\Form\\FormApiSolution\\DataBase\\DataBase.csproj"
             }
           }
         }

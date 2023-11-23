@@ -55,8 +55,8 @@ namespace FormAPI.Controllers
               }
               return Ok(await englishObj);
           } */
-        [AllowAnonymous]
         [HttpPost("CreateDropFile")]
+        [AllowAnonymous]
         public async Task<IActionResult> CreateDropFile(List<IFormFile> files)
         {
             var obj = _clickUpService.CreateDropFile(files);
@@ -66,8 +66,8 @@ namespace FormAPI.Controllers
             }
             return Ok(await obj);
         }
-        [AllowAnonymous]
         [HttpGet("GetAllSchools")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetAllSchools(){
             var obj = _clickUpService.GetAllSchools();
             if(obj is null) {
@@ -75,8 +75,8 @@ namespace FormAPI.Controllers
             }
             return Ok(await obj);
         }
-        [AllowAnonymous]
         [HttpGet("GetAllUsers")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetAllUsers()
         {
             var obj = _clickUpService.GetAllUsers();
@@ -86,16 +86,16 @@ namespace FormAPI.Controllers
             }
             return Ok(await obj);
         }
-        [AllowAnonymous]
         [HttpPost("CreateUser")]
+        [AllowAnonymous]
         public async Task<IActionResult> CreateUser([FromForm] ClickUpRequiredDataModelRequest clickUp) 
         {
-            var obj = _clickUpService.CreateUser(clickUp);
-            if(obj is null)
+            var obj = await _clickUpService.CreateUser(clickUp);
+            if(obj is null || obj.ResponseCode == 404)
             {
-                return NotFound();
+                return NotFound(obj);
             }
-            return Created("",await obj);
+            return Created("",obj);
         }
     }
 }

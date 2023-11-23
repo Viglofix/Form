@@ -142,13 +142,13 @@ public class FormDbContext : DbContext
             .HasColumnName("practices_start")
             .HasColumnType("DATE")
             .HasDefaultValue(null)
-            .IsRequired();
+            .IsRequired(false);
         modelBuilder.Entity<ClickUpRequiredDataModel>()
             .Property(x => x.PracticesEnd)
             .HasColumnName("practices_end")
             .HasColumnType("DATE")
             .HasDefaultValue(null)
-            .IsRequired();
+            .IsRequired(false);
         modelBuilder.Entity<ClickUpRequiredDataModel>()
             .Property(x => x.AdditionalInformation)
             .HasColumnName("additional_information")

@@ -29,7 +29,7 @@ namespace Services.Helper;
 
         RuleFor(x => x.English_Level)
             .NotEmpty().WithMessage("Pole 'English_Level' jest wymagane.")
-            .Matches(@"\b(?:B1|B2|C1|C2)\b");
+            .Matches(@"\b(?:b1|b2|c1|c2)\b");
 
         RuleFor(x => x.LearningGoals)
             .NotEmpty().WithMessage("Pole 'LearningGoals' jest wymagane.");
