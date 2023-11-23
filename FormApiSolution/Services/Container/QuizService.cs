@@ -49,9 +49,21 @@ public class QuizService : IQuizService
                 case ".Net":
                  query = await _formDbContext.tests!
                  .Include(x => x.Answers)
-                 .Where(x => x.Id_Test > 5)
+                 .Where(x => x.Id_Test > 5 && x.Id_Test <= 10)
                  .ToListAsync();
                 break;
+                case "Mobile(React Native)":
+                 query = await _formDbContext.tests!
+                 .Include(x=>x.Answers)
+                 .Where(x=>x.Id_Test > 10 && x.Id_Test <= 15)
+                 .ToListAsync();
+                 break;
+                case "Node.js":
+                 query = await _formDbContext.tests!
+                 .Include(x=>x.Answers)
+                 .Where(x=>x.Id_Test > 15 && x.Id_Test <= 20)
+                 .ToListAsync();
+                 break;
             }
 
             List<FrontendData> tempList = new();
