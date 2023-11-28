@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DataBase.Migrations
 {
     [DbContext(typeof(FormDbContext))]
-    [Migration("20231123105237_FixedNotNullConstraintMigration")]
-    partial class FixedNotNullConstraintMigration
+    [Migration("20231128141548_GetMemberUpdate")]
+    partial class GetMemberUpdate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -73,7 +73,14 @@ namespace DataBase.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnName("additional_information");
 
-                    b.Property<DateTime>("DateOfBirth")
+                    b.Property<long?>("AssignedToProjectId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("ColumnId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DateOfBirth")
+                        .IsRequired()
                         .HasColumnType("DATE")
                         .HasColumnName("date_of_birth");
 
@@ -122,7 +129,9 @@ namespace DataBase.Migrations
                         .HasColumnName("learning_goals");
 
                     b.Property<string>("NameOfUniversityOrOccupation")
-                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Note")
                         .HasColumnType("text");
 
                     b.Property<string>("PhoneNumber")
@@ -147,11 +156,17 @@ namespace DataBase.Migrations
                         .HasColumnType("VARCHAR")
                         .HasColumnName("programming_languages");
 
-                    b.Property<string>("Specialization")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<long?>("Range")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("Specialization_Id")
+                        .HasColumnType("BIGINT")
+                        .HasColumnName("specialization_id");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Specialization_Id")
+                        .IsUnique();
 
                     b.ToTable("clickup_required_data");
                 });
@@ -215,6 +230,32 @@ namespace DataBase.Migrations
                     b.ToTable("schools");
                 });
 
+            modelBuilder.Entity("DataBase.Model.Specialization", b =>
+                {
+                    b.Property<long?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("BIGINT")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long?>("Id"));
+
+                    b.Property<string>("Domain")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("VARCHAR")
+                        .HasColumnName("domain");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("VARCHAR")
+                        .HasColumnName("role");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("specializations");
+                });
+
             modelBuilder.Entity("DataBase.Model.Test", b =>
                 {
                     b.Property<long>("Id_Test")
@@ -267,6 +308,15 @@ namespace DataBase.Migrations
                     b.ToTable("test_answers");
                 });
 
+            modelBuilder.Entity("DataBase.Model.ClickUpRequiredDataModel", b =>
+                {
+                    b.HasOne("DataBase.Model.Specialization", "Specializations")
+                        .WithOne("ClickUpRequiredDataModel")
+                        .HasForeignKey("DataBase.Model.ClickUpRequiredDataModel", "Specialization_Id");
+
+                    b.Navigation("Specializations");
+                });
+
             modelBuilder.Entity("DataBase.Model.DropFilesModel", b =>
                 {
                     b.HasOne("DataBase.Model.ClickUpRequiredDataModel", "clickUpRequiredDataModel")
@@ -290,6 +340,11 @@ namespace DataBase.Migrations
             modelBuilder.Entity("DataBase.Model.ClickUpRequiredDataModel", b =>
                 {
                     b.Navigation("DropFilesModel");
+                });
+
+            modelBuilder.Entity("DataBase.Model.Specialization", b =>
+                {
+                    b.Navigation("ClickUpRequiredDataModel");
                 });
 
             modelBuilder.Entity("DataBase.Model.Test", b =>

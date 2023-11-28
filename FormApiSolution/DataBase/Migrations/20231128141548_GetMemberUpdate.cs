@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DataBase.Migrations
 {
     /// <inheritdoc />
-    public partial class QuizMigration : Migration
+    public partial class GetMemberUpdate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -29,37 +29,6 @@ namespace DataBase.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "clickup_required_data",
-                columns: table => new
-                {
-                    id = table.Column<long>(type: "BIGINT", nullable: false)
-                        .Annotation("Npgsql:IdentitySequenceOptions", "'1', '1', '', '', 'False', '1'")
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    full_name = table.Column<string>(type: "VARCHAR", maxLength: 64, nullable: false),
-                    email = table.Column<string>(type: "TEXT", nullable: false),
-                    phone_number = table.Column<string>(type: "TEXT", nullable: false),
-                    date_of_birth = table.Column<DateTime>(type: "DATE", nullable: false),
-                    github_account = table.Column<string>(type: "TEXT", nullable: true),
-                    Specialization = table.Column<string>(type: "text", nullable: false),
-                    NameOfUniversityOrOccupation = table.Column<string>(type: "text", nullable: false),
-                    programming_languages = table.Column<string>(type: "VARCHAR", maxLength: 256, nullable: true),
-                    graphic_inspiration = table.Column<string>(type: "TEXT", nullable: true),
-                    proficient_graphic_tools = table.Column<string>(type: "TEXT", nullable: true),
-                    experience = table.Column<string>(type: "TEXT", nullable: true),
-                    finished_project = table.Column<string>(type: "TEXT", nullable: true),
-                    english_level = table.Column<string>(type: "VARCHAR", maxLength: 5, nullable: false),
-                    learning_goals = table.Column<string>(type: "TEXT", nullable: false),
-                    goal_of_academy_participation = table.Column<string>(type: "VARCHAR", maxLength: 64, nullable: false),
-                    practices_start = table.Column<DateTime>(type: "DATE", nullable: false),
-                    practices_end = table.Column<DateTime>(type: "DATE", nullable: false),
-                    additional_information = table.Column<string>(type: "TEXT", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_clickup_required_data", x => x.id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "schools",
                 columns: table => new
                 {
@@ -71,6 +40,20 @@ namespace DataBase.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_schools", x => x.id_school);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "specializations",
+                columns: table => new
+                {
+                    id = table.Column<long>(type: "BIGINT", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    domain = table.Column<string>(type: "VARCHAR", maxLength: 64, nullable: false),
+                    role = table.Column<string>(type: "VARCHAR", maxLength: 64, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_specializations", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -86,6 +69,67 @@ namespace DataBase.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_tests", x => x.id_test);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "clickup_required_data",
+                columns: table => new
+                {
+                    id = table.Column<long>(type: "BIGINT", nullable: false)
+                        .Annotation("Npgsql:IdentitySequenceOptions", "'1', '1', '', '', 'False', '1'")
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    full_name = table.Column<string>(type: "VARCHAR", maxLength: 64, nullable: false),
+                    email = table.Column<string>(type: "TEXT", nullable: false),
+                    phone_number = table.Column<string>(type: "TEXT", nullable: false),
+                    date_of_birth = table.Column<DateTime>(type: "DATE", nullable: false),
+                    github_account = table.Column<string>(type: "TEXT", nullable: true),
+                    NameOfUniversityOrOccupation = table.Column<string>(type: "text", nullable: true),
+                    programming_languages = table.Column<string>(type: "VARCHAR", maxLength: 256, nullable: true),
+                    graphic_inspiration = table.Column<string>(type: "TEXT", nullable: true),
+                    proficient_graphic_tools = table.Column<string>(type: "TEXT", nullable: true),
+                    experience = table.Column<string>(type: "TEXT", nullable: true),
+                    finished_project = table.Column<string>(type: "TEXT", nullable: true),
+                    english_level = table.Column<string>(type: "VARCHAR", maxLength: 5, nullable: false),
+                    learning_goals = table.Column<string>(type: "TEXT", nullable: false),
+                    goal_of_academy_participation = table.Column<string>(type: "VARCHAR", maxLength: 64, nullable: false),
+                    practices_start = table.Column<DateTime>(type: "DATE", nullable: true),
+                    practices_end = table.Column<DateTime>(type: "DATE", nullable: true),
+                    additional_information = table.Column<string>(type: "TEXT", nullable: true),
+                    ColumnId = table.Column<long>(type: "bigint", nullable: true),
+                    Range = table.Column<long>(type: "bigint", nullable: true),
+                    Note = table.Column<string>(type: "text", nullable: true),
+                    AssignedToProjectId = table.Column<long>(type: "bigint", nullable: true),
+                    specialization_id = table.Column<long>(type: "BIGINT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_clickup_required_data", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_clickup_required_data_specializations_specialization_id",
+                        column: x => x.specialization_id,
+                        principalTable: "specializations",
+                        principalColumn: "id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "test_answers",
+                columns: table => new
+                {
+                    id_test_answer = table.Column<long>(type: "BIGINT", nullable: false)
+                        .Annotation("Npgsql:IdentitySequenceOptions", "'1', '1', '', '', 'False', '1'")
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    answer = table.Column<string>(type: "TEXT", nullable: false),
+                    test_id = table.Column<long>(type: "BIGINT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_test_answers", x => x.id_test_answer);
+                    table.ForeignKey(
+                        name: "FK_test_answers_tests_test_id",
+                        column: x => x.test_id,
+                        principalTable: "tests",
+                        principalColumn: "id_test",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -110,26 +154,11 @@ namespace DataBase.Migrations
                         principalColumn: "id");
                 });
 
-            migrationBuilder.CreateTable(
-                name: "test_answers",
-                columns: table => new
-                {
-                    id_test_answer = table.Column<long>(type: "BIGINT", nullable: false)
-                        .Annotation("Npgsql:IdentitySequenceOptions", "'1', '1', '', '', 'False', '1'")
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    answer = table.Column<string>(type: "TEXT", nullable: false),
-                    test_id = table.Column<long>(type: "BIGINT", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_test_answers", x => x.id_test_answer);
-                    table.ForeignKey(
-                        name: "FK_test_answers_tests_test_id",
-                        column: x => x.test_id,
-                        principalTable: "tests",
-                        principalColumn: "id_test",
-                        onDelete: ReferentialAction.Cascade);
-                });
+            migrationBuilder.CreateIndex(
+                name: "IX_clickup_required_data_specialization_id",
+                table: "clickup_required_data",
+                column: "specialization_id",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_drop_files_click_up_id",
@@ -163,6 +192,9 @@ namespace DataBase.Migrations
 
             migrationBuilder.DropTable(
                 name: "tests");
+
+            migrationBuilder.DropTable(
+                name: "specializations");
         }
     }
 }

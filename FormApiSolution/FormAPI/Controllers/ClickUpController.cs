@@ -97,5 +97,15 @@ namespace FormAPI.Controllers
             }
             return Created("",obj);
         }
+        [HttpGet("GetAllMembers")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetAllMembers(){
+            var obj = await _clickUpService.GetAllMembers();
+            if(obj is null)
+            {
+                return NotFound(obj);
+            }
+            return Ok(obj);
+        }
     }
 }

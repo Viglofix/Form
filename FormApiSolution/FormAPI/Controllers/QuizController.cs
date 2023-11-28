@@ -7,7 +7,6 @@ using Services.Service;
 
 namespace FormAPI.Controllers
 {
-    [Authorize]
     [EnableRateLimiting("fixed")]
     [Route("[controller]")]
     //[DisableCors]

@@ -11,6 +11,7 @@ using Services.Helper.DataInsertHelpers;
 using Microsoft.EntityFrameworkCore.Migrations.Operations;
 using Services.Container;
 using FluentValidation;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Services.Container;
 
@@ -51,7 +52,44 @@ public class ClickUpService : IClickUpService
             await _formDbContext.SaveChangesAsync();
             return db!;
     }
-
+    public static List<Specialization> list = new() {
+        new Specialization() {
+         Domain = "Fronted",
+         Role = "React/Next.js"
+        },
+        new Specialization() {
+         Domain = "Fronted",
+         Role = "Mobile(React Native)"
+        },
+        new Specialization() {
+         Domain = "Backend",
+         Role = ".Net"
+        },
+        new Specialization() {
+         Domain = "Backend",
+         Role = "Node.js"
+        },
+         new Specialization() {
+         Domain = "Others",
+         Role = "UI/UX"
+        },
+         new Specialization() {
+         Domain = "Others",
+         Role = "Grafika"
+        },
+          new Specialization() {
+         Domain = "Others",
+         Role = "Social Media/Marketing"
+        },
+         new Specialization() {
+         Domain = "Others",
+         Role = "PM"
+        },
+        new Specialization() {
+          Domain = "Others",
+          Role = "Copywriting"
+        }
+    };
     public async Task<ApiResponseCreateUserPost> CreateUser(ClickUpRequiredDataModelRequest model)
     {
         FileManagementService service = new(_formDbContext);
@@ -70,22 +108,6 @@ public class ClickUpService : IClickUpService
                 throw new Exception("validation is false");
             }
 
-            /* long? seq = null;
-            long? seqFile = null;
-            using (var connection = new NpgsqlConnection(_configuration.GetConnectionString("FormDb")))
-            {
-                await connection.OpenAsync();
-                using (var command = new NpgsqlCommand(@"SELECT NEXTVAL('""StatusOfRecruiterModel_id_status_of_recruiter_seq""')", connection))
-                {
-                    seq = (long?)command.ExecuteScalar();
-                }
-                using(var command = new NpgsqlCommand(@"SELECT NEXTVAL('""drop_files_FileID_seq""')", connection))
-                {
-                    seqFile = (long?)command.ExecuteScalar();
-                }
-                await connection.CloseAsync();
-            }*/
-
             long seq = 0;
             using(var connection = new NpgsqlConnection(_configuration.GetConnectionString("FormDb")))
             {
@@ -96,15 +118,22 @@ public class ClickUpService : IClickUpService
                 }
                 await connection.CloseAsync();
             }
-
-            ClickUpRequiredDataModel obj = new()
+            
+            ClickUpRequiredDataModel obj = null;
+            foreach(var item in list) {
+                if(item.Role == model.Specialization) {
+            obj = new()
             {
                 Id = seq,
                 FullName = model.FullName,
                 Email = model.Email,
                 PhoneNumber = model.PhoneNumber,
                 DateOfBirth = model.DateOfBirth,
-                Specialization = model.Specialization,
+                Specializations = new Specialization(){
+                    Id = seq,
+                    Role = model.Specialization,
+                    Domain = item.Domain
+                },
                 NameOfUniversityOrOccupation = model.NameOfUniversityOrOccupation,
                 GithubAccount = model.GithubAccount,
                 ProgrammingLangugages = model.ProgramingLanguages,
@@ -118,41 +147,16 @@ public class ClickUpService : IClickUpService
                 PracticesStart = model.PracticesStart,
                 PracticesEnd = model.PracticesEnd,
                 AdditionalInformation = model.AdditionalInformation,
-                DropFilesModel = service.DownloadSingleFile(model.FormFile!,seq)
+                DropFilesModel = service.DownloadSingleFile(model.FormFile!,seq),
             };
+            }
+            }
 
-            /* ClickUpRequiredDataModel obj = new()
-             {
-                 FullName = model.FullName,
-                 Email = model.Email,
-                 PhoneNumeber = model.PhoneNumeber,
-                 DateOfBirth = model.DateOfBirth,
-                 Specialization_Id = model.Specialization_Id,
-                 Status_Id = seq!.Value,// Tutaj front musi wyslac liczbe id jeden czy cos, zeby w UI przeksztalci sie na .net czy tam react
-                 Status = new StatusOfRecruiterModel()
-                 {
-                     Id_StatusOfRecruiter = seq!.Value, // --- Nadpisujemy wartosc z requesta powyzej, wiec sekwencja przy tworzeniu statusu nie jest wykorzystywana
-                     NameOfTheUniversity = model.Status.NameOfTheUniversity,
-                     StartDateOfPractice = model.Status.StartDateOfPractice,
-                     EndDateOfPractice = model.Status.EndDateOfPractice,
-                     TypeOfPracticeModel_Id = model.Status.TypeOfPracticeModel_Id
-                 },
-                 EnglishLevel_Id = model.EnglishLevel_Id,
-                     GithubAccount = model.GithubAccount,
-                     ProgrammingKnowledge = model.ProgrammingKnowledge,
-                     GraphicInspitation = model.GraphicInspitation,
-                     GraphicProgram = model.GraphicProgram,
-                     Experience = model.Experience,
-                     FinishedProject = model.FinishedProject,
-                     Expectation = model.Expectation,
-                     AdditionalInformation = model.AdditionalInformation
-                 }; */
-
-            await _formDbContext.clickup_required_data.AddAsync(obj);
+            await _formDbContext.clickup_required_data.AddAsync(obj!);
             await _formDbContext.SaveChangesAsync();
 
-            _response.ResultId = obj.Id;
-            _response.Specizlization = obj.Specialization;
+            _response.ResultId = obj!.Id;
+            _response.Specialization = obj?.Specializations!.Role;
             _response.ResponseCode = 201;
         }
         catch (Exception ex)
@@ -172,6 +176,32 @@ public class ClickUpService : IClickUpService
         }
         var schoolObj = await _formDbContext.schools.ToListAsync();
         return schoolObj;
+    }
+
+    public async Task<List<FrontendDataMember>> GetAllMembers()
+    {
+        var userObj = await _formDbContext.clickup_required_data
+        .Include(x=>x.Specializations)
+        .ToListAsync();
+
+        List<FrontendDataMember> dataList = new();
+        foreach(var obj in userObj) {
+            FrontendDataMember model = new()
+            {
+                Id = obj.Id,
+                FullName = obj.FullName,
+                ColumnId = obj.ColumnId,
+                Specialization = new FrontendDataSpecialization() {
+                    Domain = obj.Specializations!.Domain,
+                    Role = obj.Specializations.Role
+                },
+                Note = obj.Note,
+                AssignedToProjectId = obj.AssignedToProjectId,
+                Range = obj.Range
+            };
+            dataList.Add(model);
+        }
+        return dataList;
     }
 
     /* public async Task<List<EnglishLevelModel>> GetAllEnglishLevel()

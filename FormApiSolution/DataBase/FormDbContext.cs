@@ -20,6 +20,7 @@ public class FormDbContext : DbContext
     public virtual DbSet<School> schools {get;set;}
     public virtual DbSet<Test> tests { get; set; }
     public virtual DbSet<TestAnswer> test_answers { get; set; }
+    public virtual DbSet<Specialization> specializations {get;set;}
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -35,6 +36,8 @@ public class FormDbContext : DbContext
             .HasKey(x => x.Id_Test);
         modelBuilder.Entity<TestAnswer>()
             .HasKey(x => x.Id_TestAnswer);
+        modelBuilder.Entity<Specialization>()
+            .HasKey(x=>x.Id);
 
         /* Start Primary Keys
         modelBuilder.Entity<SpecializationModel>()
@@ -157,6 +160,10 @@ public class FormDbContext : DbContext
             .IsRequired(false);
         modelBuilder.Entity<ClickUpRequiredDataModel>()
             .Ignore(x => x.FormFile);
+        modelBuilder.Entity<ClickUpRequiredDataModel>()
+            .Property(x=>x.Specialization_Id)
+            .HasColumnName("specialization_id")
+            .HasColumnType("BIGINT");
 
         /* Foreign Keys
   modelBuilder.Entity<ClickUpRequiredDataModel>()
@@ -373,6 +380,23 @@ public class FormDbContext : DbContext
             .Property(x => x.Test_Id)
             .HasColumnName("test_id")
             .HasColumnType("BIGINT");
+
+        modelBuilder.Entity<Specialization>()
+            .Property(x=>x.Id)
+            .HasColumnName("id")
+            .HasColumnType("BIGINT");
+        modelBuilder.Entity<Specialization>()
+            .Property(x=>x.Domain)
+            .HasColumnName("domain")
+            .HasColumnType("VARCHAR")
+            .HasMaxLength(64)
+            .IsRequired();
+        modelBuilder.Entity<Specialization>()
+            .Property(x=>x.Role)
+            .HasColumnName("role")
+            .HasColumnType("VARCHAR")
+            .HasMaxLength(64)
+            .IsRequired();
         // RelationShips
         /*
         modelBuilder.Entity<ClickUpRequiredDataModel>()
@@ -407,6 +431,12 @@ public class FormDbContext : DbContext
             .HasOne<Test>(x => x.Test)
             .WithMany(x => x.Answers)
             .HasForeignKey(x => x.Test_Id);
+
+        // Specialization Relationship
+        modelBuilder.Entity<ClickUpRequiredDataModel>()
+             .HasOne(x=>x.Specializations)
+             .WithOne(x=>x.ClickUpRequiredDataModel)
+             .HasForeignKey<ClickUpRequiredDataModel>(x=>x.Specialization_Id);
 
         base.OnModelCreating(modelBuilder);
     }

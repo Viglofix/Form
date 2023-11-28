@@ -13,4 +13,5 @@ public interface IClickUpService
     public Task<List<DropFilesModel>> CreateDropFile(List<IFormFile> files);
     public Task<List<ClickUpRequiredDataModel>> GetAllUsers();
     public Task<List<School>> GetAllSchools();
+    public Task<List<FrontendDataMember>> GetAllMembers();
 }
