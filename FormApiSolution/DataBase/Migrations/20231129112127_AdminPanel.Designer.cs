@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DataBase.Migrations
 {
     [DbContext(typeof(FormDbContext))]
-    [Migration("20231128141548_GetMemberUpdate")]
-    partial class GetMemberUpdate
+    [Migration("20231129112127_AdminPanel")]
+    partial class AdminPanel
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -74,10 +74,15 @@ namespace DataBase.Migrations
                         .HasColumnName("additional_information");
 
                     b.Property<long?>("AssignedToProjectId")
-                        .HasColumnType("bigint");
+                        .HasColumnType("bigint")
+                        .HasColumnName("assigned_to_project_id");
 
-                    b.Property<long?>("ColumnId")
-                        .HasColumnType("bigint");
+                    b.Property<string>("ColumnId")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(16)
+                        .HasColumnType("VARCHAR")
+                        .HasDefaultValue("1")
+                        .HasColumnName("column_id");
 
                     b.Property<DateTime?>("DateOfBirth")
                         .IsRequired()
@@ -132,7 +137,8 @@ namespace DataBase.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Note")
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("note");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
@@ -157,7 +163,8 @@ namespace DataBase.Migrations
                         .HasColumnName("programming_languages");
 
                     b.Property<long?>("Range")
-                        .HasColumnType("bigint");
+                        .HasColumnType("bigint")
+                        .HasColumnName("range");
 
                     b.Property<long?>("Specialization_Id")
                         .HasColumnType("BIGINT")

@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DataBase.Migrations
 {
     /// <inheritdoc />
-    public partial class GetMemberUpdate : Migration
+    public partial class AdminPanel : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -95,10 +95,10 @@ namespace DataBase.Migrations
                     practices_start = table.Column<DateTime>(type: "DATE", nullable: true),
                     practices_end = table.Column<DateTime>(type: "DATE", nullable: true),
                     additional_information = table.Column<string>(type: "TEXT", nullable: true),
-                    ColumnId = table.Column<long>(type: "bigint", nullable: true),
-                    Range = table.Column<long>(type: "bigint", nullable: true),
-                    Note = table.Column<string>(type: "text", nullable: true),
-                    AssignedToProjectId = table.Column<long>(type: "bigint", nullable: true),
+                    column_id = table.Column<string>(type: "VARCHAR", maxLength: 16, nullable: true, defaultValue: "1"),
+                    range = table.Column<long>(type: "bigint", nullable: true),
+                    note = table.Column<string>(type: "text", nullable: true),
+                    assigned_to_project_id = table.Column<long>(type: "bigint", nullable: true),
                     specialization_id = table.Column<long>(type: "BIGINT", nullable: true)
                 },
                 constraints: table =>

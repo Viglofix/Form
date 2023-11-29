@@ -55,39 +55,39 @@ public class ClickUpService : IClickUpService
     public static List<Specialization> list = new() {
         new Specialization() {
          Domain = "Fronted",
-         Role = "React/Next.js"
+         Role = "react"
         },
         new Specialization() {
          Domain = "Fronted",
-         Role = "Mobile(React Native)"
+         Role = "react native"
         },
         new Specialization() {
          Domain = "Backend",
-         Role = ".Net"
+         Role = ".net"
         },
         new Specialization() {
          Domain = "Backend",
-         Role = "Node.js"
+         Role = "node.js"
         },
          new Specialization() {
          Domain = "Others",
-         Role = "UI/UX"
+         Role = "ui/ux"
         },
          new Specialization() {
          Domain = "Others",
-         Role = "Grafika"
+         Role = "grafika"
         },
           new Specialization() {
          Domain = "Others",
-         Role = "Social Media/Marketing"
+         Role = "marketing"
         },
          new Specialization() {
          Domain = "Others",
-         Role = "PM"
+         Role = "pm"
         },
         new Specialization() {
           Domain = "Others",
-          Role = "Copywriting"
+          Role = "copywriting"
         }
     };
     public async Task<ApiResponseCreateUserPost> CreateUser(ClickUpRequiredDataModelRequest model)
@@ -119,7 +119,7 @@ public class ClickUpService : IClickUpService
                 await connection.CloseAsync();
             }
             
-            ClickUpRequiredDataModel obj = null;
+            ClickUpRequiredDataModel? obj = null;
             foreach(var item in list) {
                 if(item.Role == model.Specialization) {
             obj = new()

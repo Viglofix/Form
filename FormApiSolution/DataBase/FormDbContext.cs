@@ -1,4 +1,5 @@
-﻿using DataBase.Model;
+﻿using System.Security.Cryptography.X509Certificates;
+using DataBase.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
 
@@ -164,7 +165,23 @@ public class FormDbContext : DbContext
             .Property(x=>x.Specialization_Id)
             .HasColumnName("specialization_id")
             .HasColumnType("BIGINT");
-
+        modelBuilder.Entity<ClickUpRequiredDataModel>()
+            .Property(x=>x.ColumnId)
+            .HasColumnName("column_id")
+            .HasColumnType("VARCHAR")
+            .HasMaxLength(16)
+            .HasDefaultValue("1");
+        modelBuilder.Entity<ClickUpRequiredDataModel>()
+            .Property(x=>x.Range)
+            .HasColumnName("range");
+        modelBuilder.Entity<ClickUpRequiredDataModel>()
+            .Property(x=>x.Note)
+            .HasColumnName("note");
+        modelBuilder.Entity<ClickUpRequiredDataModel>()
+            .Property(x=>x.AssignedToProjectId)
+            .HasColumnName("assigned_to_project_id");
+                
+  
         /* Foreign Keys
   modelBuilder.Entity<ClickUpRequiredDataModel>()
       .Property(x => x.Specialization_Id)

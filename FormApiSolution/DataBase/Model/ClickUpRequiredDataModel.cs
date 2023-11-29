@@ -35,7 +35,7 @@ public class ClickUpRequiredDataModel
     public DateTime? PracticesEnd { get; set; }
     public string? AdditionalInformation { get; set; }
     public IFormFile FormFile { get; set; }
-    public long? ColumnId {get;set;}
+    public string? ColumnId {get;set;}
     public long? Range {get;set;}
     public string? Note {get;set;}
     public long? AssignedToProjectId {get;set;}

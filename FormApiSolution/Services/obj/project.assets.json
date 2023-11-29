@@ -9629,11 +9629,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Form\\FormApiSolution\\Services\\Services.csproj",
+      "projectUniqueName": "d:\\Form\\FormApiSolution\\Services\\Services.csproj",
       "projectName": "Services",
-      "projectPath": "D:\\Form\\FormApiSolution\\Services\\Services.csproj",
+      "projectPath": "d:\\Form\\FormApiSolution\\Services\\Services.csproj",
       "packagesPath": "C:\\Users\\Vig\\.nuget\\packages\\",
-      "outputPath": "D:\\Form\\FormApiSolution\\Services\\obj\\",
+      "outputPath": "d:\\Form\\FormApiSolution\\Services\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Vig\\AppData\\Roaming\\NuGet\\NuGet.Config",
