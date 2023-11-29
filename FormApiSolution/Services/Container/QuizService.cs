@@ -40,25 +40,25 @@ public class QuizService : IQuizService
             List<Test>? query = new();
             switch(specialization)
             {
-                case "React/Next.js":
+                case "react":
                     query = await _formDbContext.tests!
                    .Include(x => x.Answers)
                    .Where(x => x.Id_Test > 0 && x.Id_Test <= 5)
                    .ToListAsync();
                  break;
-                case ".Net":
+                case ".net":
                  query = await _formDbContext.tests!
                  .Include(x => x.Answers)
                  .Where(x => x.Id_Test > 5 && x.Id_Test <= 10)
                  .ToListAsync();
                 break;
-                case "Mobile(React Native)":
+                case "react native":
                  query = await _formDbContext.tests!
                  .Include(x=>x.Answers)
                  .Where(x=>x.Id_Test > 10 && x.Id_Test <= 15)
                  .ToListAsync();
                  break;
-                case "Node.js":
+                case "node.js":
                  query = await _formDbContext.tests!
                  .Include(x=>x.Answers)
                  .Where(x=>x.Id_Test > 15 && x.Id_Test <= 20)
