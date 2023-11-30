@@ -176,3 +176,11 @@ D:\Form\FormApiSolution\FormAPI\bin\Debug\net7.0\Microsoft.IdentityModel.Protoco
 D:\Form\FormApiSolution\FormAPI\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 D:\Form\FormApiSolution\FormAPI\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
 D:\Form\FormApiSolution\FormAPI\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
+B:\Form\FormApiSolution\FormAPI\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+B:\Form\FormApiSolution\FormAPI\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
+B:\Form\FormApiSolution\FormAPI\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+B:\Form\FormApiSolution\FormAPI\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+B:\Form\FormApiSolution\FormAPI\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll
+B:\Form\FormApiSolution\FormAPI\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+B:\Form\FormApiSolution\FormAPI\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+B:\Form\FormApiSolution\FormAPI\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll

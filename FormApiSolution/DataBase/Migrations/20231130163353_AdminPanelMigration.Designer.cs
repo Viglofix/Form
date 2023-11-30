@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DataBase.Migrations
 {
     [DbContext(typeof(FormDbContext))]
-    [Migration("20231130112856_AdminPanelRelationUpdate")]
-    partial class AdminPanelRelationUpdate
+    [Migration("20231130163353_AdminPanelMigration")]
+    partial class AdminPanelMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -134,7 +134,9 @@ namespace DataBase.Migrations
                         .HasColumnName("learning_goals");
 
                     b.Property<string>("NameOfUniversityOrOccupation")
-                        .HasColumnType("text");
+                        .HasMaxLength(64)
+                        .HasColumnType("VARCHAR")
+                        .HasColumnName("name_of_university_or_occupation");
 
                     b.Property<string>("Note")
                         .HasColumnType("text")

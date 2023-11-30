@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DataBase.Migrations
 {
     /// <inheritdoc />
-    public partial class AdminPanel : Migration
+    public partial class AdminPanelMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -83,7 +83,7 @@ namespace DataBase.Migrations
                     phone_number = table.Column<string>(type: "TEXT", nullable: false),
                     date_of_birth = table.Column<DateTime>(type: "DATE", nullable: false),
                     github_account = table.Column<string>(type: "TEXT", nullable: true),
-                    NameOfUniversityOrOccupation = table.Column<string>(type: "text", nullable: true),
+                    name_of_university_or_occupation = table.Column<string>(type: "VARCHAR", maxLength: 64, nullable: true),
                     programming_languages = table.Column<string>(type: "VARCHAR", maxLength: 256, nullable: true),
                     graphic_inspiration = table.Column<string>(type: "TEXT", nullable: true),
                     proficient_graphic_tools = table.Column<string>(type: "TEXT", nullable: true),
@@ -157,8 +157,7 @@ namespace DataBase.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_clickup_required_data_specialization_id",
                 table: "clickup_required_data",
-                column: "specialization_id",
-                unique: true);
+                column: "specialization_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_drop_files_click_up_id",
