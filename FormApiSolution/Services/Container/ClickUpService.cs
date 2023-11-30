@@ -52,44 +52,6 @@ public class ClickUpService : IClickUpService
             await _formDbContext.SaveChangesAsync();
             return db!;
     }
-    public static List<Specialization> list = new() {
-        new Specialization() {
-         Domain = "Fronted",
-         Role = "react"
-        },
-        new Specialization() {
-         Domain = "Fronted",
-         Role = "react native"
-        },
-        new Specialization() {
-         Domain = "Backend",
-         Role = ".net"
-        },
-        new Specialization() {
-         Domain = "Backend",
-         Role = "node.js"
-        },
-         new Specialization() {
-         Domain = "Others",
-         Role = "ui/ux"
-        },
-         new Specialization() {
-         Domain = "Others",
-         Role = "grafika"
-        },
-          new Specialization() {
-         Domain = "Others",
-         Role = "marketing"
-        },
-         new Specialization() {
-         Domain = "Others",
-         Role = "pm"
-        },
-        new Specialization() {
-          Domain = "Others",
-          Role = "copywriting"
-        }
-    };
     public async Task<ApiResponseCreateUserPost> CreateUser(ClickUpRequiredDataModelRequest model)
     {
         FileManagementService service = new(_formDbContext);
@@ -118,9 +80,14 @@ public class ClickUpService : IClickUpService
                 }
                 await connection.CloseAsync();
             }
+
+        if(_formDbContext.specializations is null || !_formDbContext.specializations.Any()){
+                await _formDbContext!.specializations!.AddRangeAsync(new InsertSpecialization().GetAllSpecializations());
+                await _formDbContext.SaveChangesAsync();
+            }
             
             ClickUpRequiredDataModel? obj = null;
-            foreach(var item in list) {
+            foreach(var item in await _formDbContext.specializations.ToListAsync()) {
                 if(item.Role == model.Specialization) {
             obj = new()
             {
@@ -129,11 +96,7 @@ public class ClickUpService : IClickUpService
                 Email = model.Email,
                 PhoneNumber = model.PhoneNumber,
                 DateOfBirth = model.DateOfBirth,
-                Specializations = new Specialization(){
-                    Id = seq,
-                    Role = model.Specialization,
-                    Domain = item.Domain
-                },
+                Specialization_Id = item.Id,
                 NameOfUniversityOrOccupation = model.NameOfUniversityOrOccupation,
                 GithubAccount = model.GithubAccount,
                 ProgrammingLangugages = model.ProgramingLanguages,
@@ -201,7 +164,9 @@ public class ClickUpService : IClickUpService
             };
             dataList.Add(model);
         }
-        return dataList;
+
+        var orderedList = dataList.OrderBy(x=>x.Id).ToList();
+        return orderedList;
     }
 
     /* public async Task<List<EnglishLevelModel>> GetAllEnglishLevel()

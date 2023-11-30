@@ -47,5 +47,5 @@ public class Specialization {
   public long? Id {get;set;}
   public required string Domain {get;set;}
   public required string Role {get;set;}
-  public virtual ClickUpRequiredDataModel? ClickUpRequiredDataModel {get;set;}
+  public virtual ICollection<ClickUpRequiredDataModel>? ClickUpRequiredDataModel {get;set;}
 }

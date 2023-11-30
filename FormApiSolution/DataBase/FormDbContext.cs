@@ -91,6 +91,12 @@ public class FormDbContext : DbContext
             .HasDefaultValue(null)
             .IsRequired(false);
         modelBuilder.Entity<ClickUpRequiredDataModel>()
+            .Property(x=>x.NameOfUniversityOrOccupation)
+            .HasColumnName("name_of_university_or_occupation")
+            .HasColumnType("VARCHAR")
+            .HasMaxLength(64)
+            .IsRequired(false);
+        modelBuilder.Entity<ClickUpRequiredDataModel>()
             .Property(x => x.ProgrammingLangugages)
             .HasColumnName("programming_languages")
             .HasColumnType("VARCHAR")
@@ -180,7 +186,6 @@ public class FormDbContext : DbContext
         modelBuilder.Entity<ClickUpRequiredDataModel>()
             .Property(x=>x.AssignedToProjectId)
             .HasColumnName("assigned_to_project_id");
-                
   
         /* Foreign Keys
   modelBuilder.Entity<ClickUpRequiredDataModel>()
@@ -451,9 +456,9 @@ public class FormDbContext : DbContext
 
         // Specialization Relationship
         modelBuilder.Entity<ClickUpRequiredDataModel>()
-             .HasOne(x=>x.Specializations)
-             .WithOne(x=>x.ClickUpRequiredDataModel)
-             .HasForeignKey<ClickUpRequiredDataModel>(x=>x.Specialization_Id);
+             .HasOne<Specialization>(x=>x.Specializations)
+             .WithMany(x=>x.ClickUpRequiredDataModel)
+             .HasForeignKey(x=>x.Specialization_Id);
 
         base.OnModelCreating(modelBuilder);
     }

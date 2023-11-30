@@ -131,7 +131,9 @@ namespace DataBase.Migrations
                         .HasColumnName("learning_goals");
 
                     b.Property<string>("NameOfUniversityOrOccupation")
-                        .HasColumnType("text");
+                        .HasMaxLength(64)
+                        .HasColumnType("VARCHAR")
+                        .HasColumnName("name_of_university_or_occupation");
 
                     b.Property<string>("Note")
                         .HasColumnType("text")
@@ -169,8 +171,7 @@ namespace DataBase.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Specialization_Id")
-                        .IsUnique();
+                    b.HasIndex("Specialization_Id");
 
                     b.ToTable("clickup_required_data");
                 });
@@ -315,8 +316,8 @@ namespace DataBase.Migrations
             modelBuilder.Entity("DataBase.Model.ClickUpRequiredDataModel", b =>
                 {
                     b.HasOne("DataBase.Model.Specialization", "Specializations")
-                        .WithOne("ClickUpRequiredDataModel")
-                        .HasForeignKey("DataBase.Model.ClickUpRequiredDataModel", "Specialization_Id");
+                        .WithMany("ClickUpRequiredDataModel")
+                        .HasForeignKey("Specialization_Id");
 
                     b.Navigation("Specializations");
                 });
