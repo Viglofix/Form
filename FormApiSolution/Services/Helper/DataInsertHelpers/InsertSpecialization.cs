@@ -6,11 +6,11 @@ public class InsertSpecialization {
      public List<Specialization> GetAllSpecializations() {
      List<Specialization> list = new() {
        new Specialization() {
-         Domain = "Fronted",
+         Domain = "Frontend",
          Role = "react"
         },
         new Specialization() {
-         Domain = "Fronted",
+         Domain = "Frontend",
          Role = "react native"
         },
         new Specialization() {

@@ -45,7 +45,7 @@ INSERT INTO clickup_required_data (
     3,
     'Tekst notatki',
     NULL, -- or provide a default value for assigned_to_project_id
-    (SELECT id FROM specializations WHERE domain = 'Frontend' AND role = 'React/Next.js')
+    (SELECT id FROM specializations WHERE domain = 'Frontend' AND role = 'react')
   ),
  (
     2,
@@ -70,7 +70,7 @@ INSERT INTO clickup_required_data (
     2,
     'Dodatkowy tekst notatki',
     NULL,
-    (SELECT id FROM specializations WHERE domain = 'Backend' AND role = 'Node.js/Express')
+    (SELECT id FROM specializations WHERE domain = 'Backend' AND role = 'node.js')
 ),
 (
     3,
@@ -95,7 +95,7 @@ INSERT INTO clickup_required_data (
     3,
     'Dodatkowe uwagi na temat projektu',
     NULL,
-    (SELECT id FROM specializations WHERE domain = 'Frontend' AND role = 'React/Next.js')
+    (SELECT id FROM specializations WHERE domain = 'Frontend' AND role = 'react')
 ),
 (
     4,
@@ -120,7 +120,7 @@ INSERT INTO clickup_required_data (
     3,
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     NULL,
-    (SELECT id FROM specializations WHERE domain = 'Backend' AND role = 'Node.js/Express')
+    (SELECT id FROM specializations WHERE domain = 'Backend' AND role = 'node.js')
 ),
 (
     5,
@@ -145,7 +145,7 @@ INSERT INTO clickup_required_data (
     2,
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, turpis vel ultricies feugiat, nibh elit dignissim quam, ac lacinia tellus nulla sit amet arcu.',
     NULL,
-    (SELECT id FROM specializations WHERE domain = 'Backend' AND role = '.Net')
+    (SELECT id FROM specializations WHERE domain = 'Backend' AND role = '.net')
 ),
 (
     6,
@@ -170,7 +170,7 @@ INSERT INTO clickup_required_data (
     3,
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin aliquam, quam vel lacinia scelerisque, justo turpis bibendum arcu, non tempus dolor urna vel lectus.',
     NULL,
-    (SELECT id FROM specializations WHERE domain = 'Frontend' AND role = 'React Native')
+    (SELECT id FROM specializations WHERE domain = 'Frontend' AND role = 'react native')
 ),
 (
     7,
@@ -195,7 +195,7 @@ INSERT INTO clickup_required_data (
     3,
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, turpis vel ultricies feugiat, nibh elit dignissim quam, ac lacinia tellus nulla sit amet arcu.',
     NULL,
-    (SELECT id FROM specializations WHERE domain = 'Backend' AND role = 'Node.js/Express')
+    (SELECT id FROM specializations WHERE domain = 'Backend' AND role = 'node.js')
 ),
 (
     8,
@@ -220,7 +220,7 @@ INSERT INTO clickup_required_data (
     1,
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus fermentum elit quis justo semper, nec mattis lectus fermentum.',
     NULL,
-    (SELECT id FROM specializations WHERE domain = 'Others' AND role = 'Grafika')
+    (SELECT id FROM specializations WHERE domain = 'Others' AND role = 'grafika')
 ),
 (
     9,
@@ -245,7 +245,7 @@ INSERT INTO clickup_required_data (
     2,
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vehicula, augue in fermentum cursus, felis est euismod metus, at convallis sapien velit quis ante.',
     NULL,
-    (SELECT id FROM specializations WHERE domain = 'Others' AND role = 'Grafika')
+    (SELECT id FROM specializations WHERE domain = 'Others' AND role = 'grafika')
 ),
 (
     20,
@@ -270,5 +270,5 @@ INSERT INTO clickup_required_data (
     3,
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eu magna ut nulla commodo laoreet eget nec metus.',
     '1',
-    (SELECT id FROM specializations WHERE domain = 'Backend' AND role = '.Net')
+    (SELECT id FROM specializations WHERE domain = 'Backend' AND role = '.net')
 );

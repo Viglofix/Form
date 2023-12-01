@@ -124,7 +124,7 @@ public class ClickUpService : IClickUpService
         }
         catch (Exception ex)
         {
-            _response.ResponseCode = 404;
+            _response.ResponseCode = 400;
             _response.ErrorMessage = ex.Message;
             return _response;
         }
@@ -143,6 +143,12 @@ public class ClickUpService : IClickUpService
 
     public async Task<List<FrontendDataMember>> GetAllMembers()
     {
+           if(_formDbContext.specializations is null || !_formDbContext.specializations.Any()){
+                await _formDbContext!.specializations!.AddRangeAsync(new InsertSpecialization().GetAllSpecializations());
+                await _formDbContext.SaveChangesAsync();
+            }
+            
+        try {
         var userObj = await _formDbContext.clickup_required_data
         .Include(x=>x.Specializations)
         .ToListAsync();
@@ -167,6 +173,14 @@ public class ClickUpService : IClickUpService
 
         var orderedList = dataList.OrderBy(x=>x.Id).ToList();
         return orderedList;
+        }
+        catch(Exception ex) {
+            return new List<FrontendDataMember>() {
+                new FrontendDataMember() {
+                     Note = ex.Message,
+                }
+            };
+        }
     }
 
     /* public async Task<List<EnglishLevelModel>> GetAllEnglishLevel()

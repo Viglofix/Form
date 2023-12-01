@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.RateLimiting;
+using Services.Helper.DataInsertHelpers;
 
 namespace FormAPI.Controllers
 {
@@ -91,9 +92,10 @@ namespace FormAPI.Controllers
         public async Task<IActionResult> CreateUser([FromForm] ClickUpRequiredDataModelRequest clickUp) 
         {
             var obj = await _clickUpService.CreateUser(clickUp);
-            if(obj is null || obj.ResponseCode == 404)
+            if(obj is null || obj.ResponseCode == 400)
             {
-                return NotFound(obj);
+                
+                return BadRequest(obj!.ErrorMessage);
             }
             return Created("",obj);
         }
@@ -106,6 +108,17 @@ namespace FormAPI.Controllers
                 return NotFound(obj);
             }
             return Ok(obj);
+        }
+
+        [HttpGet("UpdateStaticUsers")]
+        [AllowAnonymous]
+        public async Task<IActionResult> UpdateStaticUsers(){
+          var obj = new InsertStaticUsers().GetAllStaticUsers();
+
+          await _dbContext.AddRangeAsync(obj);
+          await _dbContext.SaveChangesAsync();
+
+          return Ok("Users has been updated");
         }
     }
 }
