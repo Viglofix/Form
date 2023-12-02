@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DataBase.Migrations
 {
     /// <inheritdoc />
-    public partial class AdminPanelMigration : Migration
+    public partial class AdminPanelScoreUpdate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -99,6 +99,7 @@ namespace DataBase.Migrations
                     range = table.Column<long>(type: "bigint", nullable: true),
                     note = table.Column<string>(type: "text", nullable: true),
                     assigned_to_project_id = table.Column<long>(type: "bigint", nullable: true),
+                    score = table.Column<int>(type: "integer", nullable: true),
                     specialization_id = table.Column<long>(type: "BIGINT", nullable: true)
                 },
                 constraints: table =>

@@ -37,5 +37,16 @@ namespace FormAPI.Controllers
             }
             return Ok(await obj);
         }
+        [AllowAnonymous]
+        [HttpPost("UpdateRange")]
+        public async Task<IActionResult> UpdateRange([FromQuery] int id, [FromQuery] int score)
+        {
+            var obj = _quizService.RangUpdate(id, score);
+            if (obj is null)
+            {
+                return BadRequest();
+            }
+            return Ok(await obj);
+        }
     }
 }

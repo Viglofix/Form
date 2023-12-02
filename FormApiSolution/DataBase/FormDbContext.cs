@@ -186,6 +186,9 @@ public class FormDbContext : DbContext
         modelBuilder.Entity<ClickUpRequiredDataModel>()
             .Property(x=>x.AssignedToProjectId)
             .HasColumnName("assigned_to_project_id");
+        modelBuilder.Entity<ClickUpRequiredDataModel>()
+            .Property(x=>x.Score)
+            .HasColumnName("score");
   
         /* Foreign Keys
   modelBuilder.Entity<ClickUpRequiredDataModel>()

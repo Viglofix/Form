@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DataBase.Migrations
 {
     [DbContext(typeof(FormDbContext))]
-    [Migration("20231130163353_AdminPanelMigration")]
-    partial class AdminPanelMigration
+    [Migration("20231202134017_AdminPanelScoreUpdate")]
+    partial class AdminPanelScoreUpdate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -167,6 +167,10 @@ namespace DataBase.Migrations
                     b.Property<long?>("Range")
                         .HasColumnType("bigint")
                         .HasColumnName("range");
+
+                    b.Property<int?>("Score")
+                        .HasColumnType("integer")
+                        .HasColumnName("score");
 
                     b.Property<long?>("Specialization_Id")
                         .HasColumnType("BIGINT")

@@ -5,6 +5,7 @@ using Services.Helper.DataInsertHelpers;
 using Services.Service;
 using DataBase.Model;
 using Npgsql;
+using System.Data;
 
 namespace Services.Container;
 public class QuizService : IQuizService
@@ -15,6 +16,33 @@ public class QuizService : IQuizService
     {
         _formDbContext = formDbContext;
         _configuration = configuration;
+    }
+    public async Task<long?> RangUpdate(long id, int score) {
+        var db = await _formDbContext.clickup_required_data.ToListAsync();
+        var findUser = await _formDbContext.clickup_required_data.FindAsync(id);
+
+        // Nowicjusz
+        if(score >= 20){
+            findUser!.Score = score;
+            findUser.Range = 1;
+        }
+        // Uczen
+        if(score >= 40) {
+            findUser!.Score = score;
+            findUser.Range = 2;
+        }
+        // Czeladnik
+        if(score >= 60) {
+            findUser!.Score = score;
+            findUser.Range = 3;
+        }
+        // Mistrz
+        if(score >= 80) {
+            findUser!.Score = score;
+            findUser.Range = 4;
+        }
+        await _formDbContext.SaveChangesAsync();
+        return findUser!.Range;
     }
     public async Task<List<FrontendData>> GetQuestion(string specialization)
     {

@@ -165,6 +165,10 @@ namespace DataBase.Migrations
                         .HasColumnType("bigint")
                         .HasColumnName("range");
 
+                    b.Property<int?>("Score")
+                        .HasColumnType("integer")
+                        .HasColumnName("score");
+
                     b.Property<long?>("Specialization_Id")
                         .HasColumnType("BIGINT")
                         .HasColumnName("specialization_id");

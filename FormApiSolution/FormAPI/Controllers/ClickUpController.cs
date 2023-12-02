@@ -83,7 +83,7 @@ namespace FormAPI.Controllers
             var obj = _clickUpService.GetAllUsers();
             if(obj is null)
             {
-                return NotFound();
+                return StatusCode(500);
             }
             return Ok(await obj);
         }

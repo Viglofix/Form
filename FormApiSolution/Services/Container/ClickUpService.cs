@@ -30,7 +30,10 @@ public class ClickUpService : IClickUpService
     public async Task<List<ClickUpRequiredDataModel>> GetAllUsers()
     {
         var db = await _formDbContext.clickup_required_data.ToListAsync();
-        return db;
+        if(db is null || !db.Any()) {
+            return null!;
+        }
+        return db!;
     }
 
     public async Task<List<DropFilesModel>> CreateDropFile(List<IFormFile> files)
@@ -81,7 +84,7 @@ public class ClickUpService : IClickUpService
                 await connection.CloseAsync();
             }
 
-        if(_formDbContext.specializations is null || !_formDbContext.specializations.Any()){
+            if(_formDbContext.specializations is null || !_formDbContext.specializations.Any()){
                 await _formDbContext!.specializations!.AddRangeAsync(new InsertSpecialization().GetAllSpecializations());
                 await _formDbContext.SaveChangesAsync();
             }

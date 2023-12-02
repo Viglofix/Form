@@ -39,6 +39,7 @@ public class ClickUpRequiredDataModel
     public long? Range {get;set;}
     public string? Note {get;set;}
     public long? AssignedToProjectId {get;set;}
+    public int? Score {get;set;}
     public long? Specialization_Id {get;set;}
     public virtual Specialization? Specializations {get;set;}
 }
