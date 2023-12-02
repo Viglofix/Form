@@ -113,6 +113,11 @@ namespace FormAPI.Controllers
         [HttpGet("UpdateStaticUsers")]
         [AllowAnonymous]
         public async Task<IActionResult> UpdateStaticUsers(){
+            if(_dbContext.specializations is null || !_dbContext.specializations.Any()){
+                await _dbContext!.specializations!.AddRangeAsync(new InsertSpecialization().GetAllSpecializations());
+                await _dbContext.SaveChangesAsync();
+            }
+
           var obj = new InsertStaticUsers().GetAllStaticUsers();
 
           await _dbContext.AddRangeAsync(obj);
