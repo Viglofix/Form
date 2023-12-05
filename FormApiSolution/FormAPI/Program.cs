@@ -8,6 +8,8 @@ using FormAPI.AuthenticationHelper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using AutoMapper;
+using DataBase.Model;
 
 namespace FormAPI;
     public class Program
@@ -58,6 +60,13 @@ namespace FormAPI;
             builder.Services.AddTransient<IClickUpService,ClickUpService>();
             builder.Services.AddTransient<IFileManagementService,FileManagementService>();
             builder.Services.AddTransient<IQuizService, QuizService>();
+
+            var mapperConfig = new MapperConfiguration(cfg => {
+               cfg.CreateMap<ClickUpRequiredDataModelRequest,ClickUpRequiredDataModel>();
+            });
+
+            IMapper mapper = mapperConfig.CreateMapper();
+            builder.Services.AddSingleton(mapper);
             //Authentication
             //  builder.Services.AddAuthentication("BasicAuthentication").AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
            

@@ -87,6 +87,13 @@ namespace FormAPI.Controllers
             }
             return Ok(await obj);
         }
+        [HttpPut("UpdateUser")]
+        [AllowAnonymous]
+        public async Task<IActionResult> UpdateUser([FromQuery] int id, [FromBody] ClickUpRequiredDataModelRequest model) {
+            var obj = _clickUpService.UpdateUser(id,model);
+
+            return Ok(await obj);
+        }
         [HttpPost("CreateUser")]
         [AllowAnonymous]
         public async Task<IActionResult> CreateUser([FromForm] ClickUpRequiredDataModelRequest clickUp) 

@@ -8,10 +8,7 @@ using Npgsql;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Http;
 using Services.Helper.DataInsertHelpers;
-using Microsoft.EntityFrameworkCore.Migrations.Operations;
-using Services.Container;
-using FluentValidation;
-using System.Security.Cryptography.X509Certificates;
+using AutoMapper;
 
 namespace Services.Container;
 
@@ -21,10 +18,12 @@ public class ClickUpService : IClickUpService
 {
     private readonly FormDbContext _formDbContext;
     private readonly IConfiguration _configuration;
-    public ClickUpService(FormDbContext formDbContext,IConfiguration configuration)
+    private readonly IMapper _mapper;
+    public ClickUpService(FormDbContext formDbContext,IConfiguration configuration, IMapper mapper)
     {
         _formDbContext = formDbContext;
         _configuration = configuration;
+        _mapper = mapper;
     }
 
     public async Task<List<ClickUpRequiredDataModel>> GetAllUsers()
@@ -34,6 +33,36 @@ public class ClickUpService : IClickUpService
             return null!;
         }
         return db!;
+    }
+    public async Task<string> UpdateUser(long id,ClickUpRequiredDataModelRequest model) {
+       var objToUpdate = await _formDbContext.clickup_required_data.FindAsync(id);
+       if(objToUpdate is null) {
+        return "User Not Found";
+       }
+
+       objToUpdate.FullName = model.FullName ?? objToUpdate.FullName;
+       objToUpdate.Email = model.Email ?? objToUpdate.Email;
+       objToUpdate.PhoneNumber = model.PhoneNumber ?? objToUpdate.PhoneNumber;
+       objToUpdate.DateOfBirth = model.DateOfBirth ?? objToUpdate.DateOfBirth;
+       objToUpdate.GithubAccount = model.GithubAccount ?? objToUpdate.GithubAccount;
+       objToUpdate.NameOfUniversityOrOccupation = model.NameOfUniversityOrOccupation ?? objToUpdate.NameOfUniversityOrOccupation;
+       objToUpdate.ProgrammingLangugages = model.ProgramingLanguages ?? objToUpdate.ProgrammingLangugages;
+       objToUpdate.GraphicInspitation = model.GraphicInspiration ?? objToUpdate.GraphicInspitation;
+       objToUpdate.ProficientGraphicTools = model.ProficientGraphicTools ?? objToUpdate.ProficientGraphicTools;
+       objToUpdate.Experience = model.Experience ?? objToUpdate.Experience;
+       objToUpdate.FinishedProject = model.FinishedProject ?? objToUpdate.FinishedProject;
+       objToUpdate.English_Level = model.English_Level ?? objToUpdate.English_Level;
+       objToUpdate.LearningGoals = model.LearningGoals  ?? objToUpdate.LearningGoals;
+       objToUpdate.GoalOfAcademyParticipation = model.GoalOfAcademyParticipation ?? objToUpdate.GoalOfAcademyParticipation;
+       objToUpdate.PracticesStart = model.PracticesStart ?? objToUpdate.PracticesStart;
+       objToUpdate.PracticesEnd = model.PracticesEnd ?? objToUpdate.PracticesEnd;
+       objToUpdate.AdditionalInformation = model.AdditionalInformation ?? objToUpdate.AdditionalInformation;
+       objToUpdate.FormFile = model.FormFile! ?? objToUpdate.FormFile;
+       
+       _formDbContext.Update(objToUpdate);
+       await _formDbContext.SaveChangesAsync();
+
+       return "User has been updated";
     }
 
     public async Task<List<DropFilesModel>> CreateDropFile(List<IFormFile> files)

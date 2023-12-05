@@ -184,3 +184,4 @@ B:\Form\FormApiSolution\FormAPI\bin\Debug\net7.0\Microsoft.IdentityModel.Protoco
 B:\Form\FormApiSolution\FormAPI\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 B:\Form\FormApiSolution\FormAPI\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
 B:\Form\FormApiSolution\FormAPI\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
+D:\Form\FormApiSolution\FormAPI\bin\Debug\net7.0\AutoMapper.dll
