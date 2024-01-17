@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DataBase.Migrations
 {
     [DbContext(typeof(FormDbContext))]
-    [Migration("20231202134017_AdminPanelScoreUpdate")]
-    partial class AdminPanelScoreUpdate
+    [Migration("20240117141915_AdminPanel")]
+    partial class AdminPanel
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
