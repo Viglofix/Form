@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Form\\FormApiSolution\\Services\\Services.csproj": {}
+    "B:\\Form\\FormApiSolution\\Services\\Services.csproj": {}
   },
   "projects": {
-    "D:\\Form\\FormApiSolution\\DataBase\\DataBase.csproj": {
+    "B:\\Form\\FormApiSolution\\DataBase\\DataBase.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Form\\FormApiSolution\\DataBase\\DataBase.csproj",
+        "projectUniqueName": "B:\\Form\\FormApiSolution\\DataBase\\DataBase.csproj",
         "projectName": "DataBase",
-        "projectPath": "D:\\Form\\FormApiSolution\\DataBase\\DataBase.csproj",
-        "packagesPath": "C:\\Users\\Vig\\.nuget\\packages\\",
-        "outputPath": "D:\\Form\\FormApiSolution\\DataBase\\obj\\",
+        "projectPath": "B:\\Form\\FormApiSolution\\DataBase\\DataBase.csproj",
+        "packagesPath": "C:\\Users\\vig\\.nuget\\packages\\",
+        "outputPath": "B:\\Form\\FormApiSolution\\DataBase\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Vig\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\vig\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -79,21 +79,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Form\\FormApiSolution\\Services\\Services.csproj": {
+    "B:\\Form\\FormApiSolution\\Services\\Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Form\\FormApiSolution\\Services\\Services.csproj",
+        "projectUniqueName": "B:\\Form\\FormApiSolution\\Services\\Services.csproj",
         "projectName": "Services",
-        "projectPath": "D:\\Form\\FormApiSolution\\Services\\Services.csproj",
-        "packagesPath": "C:\\Users\\Vig\\.nuget\\packages\\",
-        "outputPath": "D:\\Form\\FormApiSolution\\Services\\obj\\",
+        "projectPath": "B:\\Form\\FormApiSolution\\Services\\Services.csproj",
+        "packagesPath": "C:\\Users\\vig\\.nuget\\packages\\",
+        "outputPath": "B:\\Form\\FormApiSolution\\Services\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Vig\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\vig\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -107,8 +107,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "D:\\Form\\FormApiSolution\\DataBase\\DataBase.csproj": {
-                "projectPath": "D:\\Form\\FormApiSolution\\DataBase\\DataBase.csproj"
+              "B:\\Form\\FormApiSolution\\DataBase\\DataBase.csproj": {
+                "projectPath": "B:\\Form\\FormApiSolution\\DataBase\\DataBase.csproj"
               }
             }
           }
@@ -156,7 +156,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

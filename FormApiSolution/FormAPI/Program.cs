@@ -4,9 +4,6 @@ using Services.Container;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.RateLimiting;
 using System.Threading.RateLimiting;
-using FormAPI.AuthenticationHelper;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using AutoMapper;
 using DataBase.Model;
@@ -39,10 +36,6 @@ namespace FormAPI;
                 });
             });
 
-           var jwtOptions = builder.Configuration
-           .GetSection("JwtOptions")
-           .Get<JwtOptions>();
-
             builder.Services.AddRateLimiter(options =>
             {
                 options.AddFixedWindowLimiter("fixed",opt =>
@@ -67,29 +60,6 @@ namespace FormAPI;
 
             IMapper mapper = mapperConfig.CreateMapper();
             builder.Services.AddSingleton(mapper);
-            //Authentication
-            //  builder.Services.AddAuthentication("BasicAuthentication").AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
-           
-            /* builder.Services.AddSingleton(jwtOptions);
-
-             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(opt=>{
-               byte[] signingKeyBytes = Encoding.UTF8
-               .GetBytes(jwtOptions.SigningKey);
-
-            opt.TokenValidationParameters = new TokenValidationParameters
-               {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = true,
-            ValidateIssuerSigningKey = true,
-            ValidIssuer = jwtOptions.Issuer,
-            ValidAudience = jwtOptions.Audience,
-            IssuerSigningKey = new SymmetricSecurityKey(signingKeyBytes)
-             };
-            });
-            
-            builder.Services.AddAuthorization(); */
 
             var app = builder.Build();
             app.UseCors("UniversalPolicy");
