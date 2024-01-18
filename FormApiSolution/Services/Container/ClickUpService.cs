@@ -196,6 +196,7 @@ public class ClickUpService : IClickUpService
                     Domain = obj.Specializations!.Domain,
                     Role = obj.Specializations.Role
                 },
+                NameOfUniversityOrOccupation = obj.NameOfUniversityOrOccupation,
                 Note = obj.Note,
                 AssignedToProjectId = obj.AssignedToProjectId,
                 Range = obj.Range
