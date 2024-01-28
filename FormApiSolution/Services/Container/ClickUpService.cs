@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Http;
 using Services.Helper.DataInsertHelpers;
 using AutoMapper;
+using Services.Helper.DTO;
+using Services.Helper.DataManager;
 
 namespace Services.Container;
 
@@ -34,30 +36,14 @@ public class ClickUpService : IClickUpService
         }
         return db!;
     }
-    public async Task<string> UpdateUser(long id,ClickUpRequiredDataModelRequest model) {
+    public async Task<string> UpdateUser(long id,UpdateUserDTO model) {
        var objToUpdate = await _formDbContext.clickup_required_data.FindAsync(id);
        if(objToUpdate is null) {
         return "User Not Found";
        }
 
-       objToUpdate.FullName = model.FullName ?? objToUpdate.FullName;
-       objToUpdate.Email = model.Email ?? objToUpdate.Email;
-       objToUpdate.PhoneNumber = model.PhoneNumber ?? objToUpdate.PhoneNumber;
-       objToUpdate.DateOfBirth = model.DateOfBirth ?? objToUpdate.DateOfBirth;
-       objToUpdate.GithubAccount = model.GithubAccount ?? objToUpdate.GithubAccount;
-       objToUpdate.NameOfUniversityOrOccupation = model.NameOfUniversityOrOccupation ?? objToUpdate.NameOfUniversityOrOccupation;
-       objToUpdate.ProgrammingLangugages = model.ProgramingLanguages ?? objToUpdate.ProgrammingLangugages;
-       objToUpdate.GraphicInspitation = model.GraphicInspiration ?? objToUpdate.GraphicInspitation;
-       objToUpdate.ProficientGraphicTools = model.ProficientGraphicTools ?? objToUpdate.ProficientGraphicTools;
-       objToUpdate.Experience = model.Experience ?? objToUpdate.Experience;
-       objToUpdate.FinishedProject = model.FinishedProject ?? objToUpdate.FinishedProject;
-       objToUpdate.English_Level = model.English_Level ?? objToUpdate.English_Level;
-       objToUpdate.LearningGoals = model.LearningGoals  ?? objToUpdate.LearningGoals;
-       objToUpdate.GoalOfAcademyParticipation = model.GoalOfAcademyParticipation ?? objToUpdate.GoalOfAcademyParticipation;
-       objToUpdate.PracticesStart = model.PracticesStart ?? objToUpdate.PracticesStart;
-       objToUpdate.PracticesEnd = model.PracticesEnd ?? objToUpdate.PracticesEnd;
-       objToUpdate.AdditionalInformation = model.AdditionalInformation ?? objToUpdate.AdditionalInformation;
-       objToUpdate.FormFile = model.FormFile! ?? objToUpdate.FormFile;
+        DTOManager dTOManager = new DTOManager();
+        await dTOManager.UpdateUserDTOConverter(objToUpdate,model);
        
        _formDbContext.Update(objToUpdate);
        await _formDbContext.SaveChangesAsync();
@@ -132,7 +118,7 @@ public class ClickUpService : IClickUpService
                 NameOfUniversityOrOccupation = model.NameOfUniversityOrOccupation,
                 GithubAccount = model.GithubAccount,
                 ProgrammingLangugages = model.ProgramingLanguages,
-                GraphicInspitation = model.GraphicInspiration,
+                GraphicInspiration = model.GraphicInspiration,
                 ProficientGraphicTools = model.ProficientGraphicTools,
                 Experience = model.Experience,
                 FinishedProject = model.FinishedProject,
@@ -173,7 +159,7 @@ public class ClickUpService : IClickUpService
         return schoolObj;
     }
 
-    public async Task<List<FrontendDataMember>> GetAllMembers()
+    public async Task<List<FrontendDataMemberDTO>> GetAllMembers()
     {
            if(_formDbContext.specializations is null || !_formDbContext.specializations.Any()){
                 await _formDbContext!.specializations!.AddRangeAsync(new InsertSpecialization().GetAllSpecializations());
@@ -185,9 +171,9 @@ public class ClickUpService : IClickUpService
         .Include(x=>x.Specializations)
         .ToListAsync();
 
-        List<FrontendDataMember> dataList = new();
+        List<FrontendDataMemberDTO> dataList = new();
         foreach(var obj in userObj) {
-            FrontendDataMember model = new()
+            FrontendDataMemberDTO model = new()
             {
                 Id = obj.Id,
                 FullName = obj.FullName,
@@ -208,8 +194,8 @@ public class ClickUpService : IClickUpService
         return orderedList;
         }
         catch(Exception ex) {
-            return new List<FrontendDataMember>() {
-                new FrontendDataMember() {
+            return new List<FrontendDataMemberDTO>() {
+                new FrontendDataMemberDTO() {
                      Note = ex.Message,
                 }
             };
