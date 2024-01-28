@@ -24,7 +24,7 @@ public class ClickUpRequiredDataModel
     public string? GithubAccount { get; set; }  
     public string? NameOfUniversityOrOccupation { get; set; }
     public string? ProgrammingLangugages { get; set; }
-    public string? GraphicInspitation { get; set; }
+    public string? GraphicInspiration { get; set; }
     public string? ProficientGraphicTools { get; set; }
     public string? Experience { get; set; }
     public string? FinishedProject { get; set; }

@@ -104,7 +104,7 @@ public class FormDbContext : DbContext
             .HasDefaultValue(null)
             .IsRequired(false);
         modelBuilder.Entity<ClickUpRequiredDataModel>()
-            .Property(x => x.GraphicInspitation)
+            .Property(x => x.GraphicInspiration)
             .HasColumnName("graphic_inspiration")
             .HasColumnType("TEXT")
             .HasDefaultValue(null)

@@ -2,7 +2,7 @@ using DataBase.Model;
 
 namespace Services.Helper.DataInsertHelpers; 
 
-public class FrontendDataMember {
+public class FrontendDataMemberDTO {
     public long? Id {get;set;}
     public string? ColumnId {get;set;}
     public string? FullName {get;set;}

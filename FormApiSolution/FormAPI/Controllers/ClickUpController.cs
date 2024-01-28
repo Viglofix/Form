@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.RateLimiting;
 using Services.Helper.DataInsertHelpers;
+using Services.Helper.DTO;
 
 namespace FormAPI.Controllers
 {
@@ -89,7 +90,7 @@ namespace FormAPI.Controllers
         }
         [HttpPut("UpdateUser")]
         [AllowAnonymous]
-        public async Task<IActionResult> UpdateUser([FromQuery] int id, [FromBody] ClickUpRequiredDataModelRequest model) {
+        public async Task<IActionResult> UpdateUser([FromQuery] int id, [FromBody] UpdateUserDTO model) {
             var obj = _clickUpService.UpdateUser(id,model);
 
             return Ok(await obj);
